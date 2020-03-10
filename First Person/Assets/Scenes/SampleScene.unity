@@ -333,26 +333,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 755393323005155482, guid: 0e590f624efa10d42aa6d1f7736886a5,
-        type: 3}
-      propertyPath: sensitivity
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 755393323005155482, guid: 0e590f624efa10d42aa6d1f7736886a5,
-        type: 3}
-      propertyPath: maxVerticalAngle
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 755393323005155482, guid: 0e590f624efa10d42aa6d1f7736886a5,
-        type: 3}
-      propertyPath: minVerticalAngle
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 755393323005155482, guid: 0e590f624efa10d42aa6d1f7736886a5,
-        type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5043579246810665544, guid: 0e590f624efa10d42aa6d1f7736886a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -407,16 +387,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6042160125660579979, guid: 0e590f624efa10d42aa6d1f7736886a5,
-        type: 3}
-      propertyPath: m_projectionMatrixMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6042160125660579979, guid: 0e590f624efa10d42aa6d1f7736886a5,
-        type: 3}
-      propertyPath: field of view
-      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e590f624efa10d42aa6d1f7736886a5, type: 3}

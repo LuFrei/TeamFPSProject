@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5043579246810665544}
   - component: {fileID: 8840910340170280357}
   - component: {fileID: 2687854554416049481}
-  - component: {fileID: 755393323005155483}
   - component: {fileID: 755393323005155482}
   m_Layer: 0
   m_Name: Player
@@ -65,20 +64,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &755393323005155483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 485424257355365159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea15db29bb3664438c30d97869dfdf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  speed: 5
 --- !u!114 &755393323005155482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,8 +76,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2315e2b24d28643bc4ad7aeef33e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   head: {fileID: 8551715616552070212}
+  rb: {fileID: 2687854554416049481}
+  speed: 5
+  jumpHeight: 5
+  sensitivity: 7
+  maxVerticalAngle: 90
+  minVerticalAngle: -90
 --- !u!1 &4064060051990624829
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +140,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
