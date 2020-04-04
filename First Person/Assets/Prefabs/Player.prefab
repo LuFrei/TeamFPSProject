@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8840910340170280357}
   - component: {fileID: 2687854554416049481}
   - component: {fileID: 755393323005155482}
+  - component: {fileID: 1993545315}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -76,13 +77,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2315e2b24d28643bc4ad7aeef33e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 8551715616552070212}
-  rb: {fileID: 2687854554416049481}
-  speed: 5
-  jumpHeight: 5
-  sensitivity: 7
-  maxVerticalAngle: 90
-  minVerticalAngle: -90
+  head: {fileID: 0}
+  rb: {fileID: 0}
+  gc: {fileID: 0}
+  speed: 0
+  jumpHeight: 0
+  sensitivity: 0
+  maxVerticalAngle: 0
+  minVerticalAngle: 0
+--- !u!114 &1993545315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485424257355365159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bdcf85029f738e4885a6dc022e1741e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2385674289432870631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6311036196878831809}
+  m_Layer: 0
+  m_Name: Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6311036196878831809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2385674289432870631}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.839, y: -0.94499993, z: 0.44}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_Children: []
+  m_Father: {fileID: 8551715616552070212}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4064060051990624829
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +155,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.75, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6311036196878831809}
   m_Father: {fileID: 5043579246810665544}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

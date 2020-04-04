@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventorySystem{
-    
+public class FocusRayscan : MonoBehaviour
+{
+    private GameObject targetHit;
 }
