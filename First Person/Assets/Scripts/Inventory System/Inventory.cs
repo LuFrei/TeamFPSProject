@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Inventory
 {
     private int size;
-    private int[] inventory;
+    private UsableLoadoutItem[] inventory;
     private int currentIndex;
 
     public int Size { get; }
@@ -14,7 +14,7 @@ public class Inventory
 
     public Inventory(int inventorySize){
         size = inventorySize;
-        inventory = new int[size];
+        inventory = new UsableLoadoutItem[size];
     }
 
     //Inventory Navigation functions
@@ -30,16 +30,16 @@ public class Inventory
 
     //Inventory Manipulation funcations
     public void Clear(int index){
-        inventory[index] = 0;
+        inventory[index] = null;
     }
-    public void Set(int index, int itemID){
-        inventory[index] = itemID;
+    public void Set(int index, UsableLoadoutItem item){
+        inventory[index] = item;
     }
     /// <summary>
     /// Returns ItemID of currentIndex
     /// </summary>
     /// <returns>ItemID</returns>
-    public int Get(){
+    public UsableLoadoutItem Get(){
         return inventory[currentIndex];
     }
     /// <summary>
@@ -47,7 +47,7 @@ public class Inventory
     /// </summary>
     /// <param name="index">inventory "slot"</param>
     /// <returns>ItemID</returns>
-    public int Get(int index){
+    public UsableLoadoutItem Get(int index){
         return inventory[index];
     }
 

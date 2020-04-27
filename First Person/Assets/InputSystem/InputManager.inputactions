@@ -46,9 +46,33 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Aim",
+                    "type": "Button",
+                    "id": "9e82b396-7087-49c9-b7c5-6a846a0eb71f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "09a9fbca-cec8-4884-a11e-b56d88a30b6b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "9949efd4-03f2-46ae-a480-7fadaea6034a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Melee",
+                    "type": "Button",
+                    "id": "8f6efccf-7204-4b10-a069-4d6e7b35d01e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -113,7 +137,7 @@
                 {
                     "name": "",
                     "id": "6670961d-b210-4153-b949-1db660e44582",
-                    "path": "<DualShockGamepad>/rightStick",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "PS4",
@@ -135,7 +159,7 @@
                 {
                     "name": "",
                     "id": "73823106-0ceb-402b-9354-16062a8de184",
-                    "path": "<DualShockGamepad>/rightStick",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "PS4",
@@ -217,6 +241,61 @@
                     "processors": "",
                     "groups": "PS4",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48771399-50a2-40b3-862b-0a971832f192",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "42f115c8-98d7-4aa6-b490-3672de1a76c2",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ce8455f-1542-4e93-9b55-c737606e4f6e",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "057af393-7dc6-4212-88ba-85303bbbc77e",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cef61bcc-967c-47a1-b63f-ccb4c886668d",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Melee",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

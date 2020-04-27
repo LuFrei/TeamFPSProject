@@ -13,7 +13,7 @@ public class GroundCheck : MonoBehaviour{
 
     private void Start()
     {
-        groundCollider = new GameObject("Ground Checker", typeof(Collider));
-        Instantiate(groundCollider,this.transform);
+        //groundCollider = new GameObject("Ground Checker", typeof(Collider));
+        //Instantiate(groundCollider,this.transform);
     }
 }

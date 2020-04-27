@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FocusRayscan : MonoBehaviour
-{
-    private GameObject targetHit;
+public class AssaultRifle : Weapon{
+
 }
