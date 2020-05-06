@@ -2,17 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBehavior : MonoBehaviour
+public class BulletBehavior: MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Vector3 dir = Vector3.forward;
+    private RaycastHit hit;
+
+    private float lifeTime = 0.2f;
+
+    public Vector3 Direction { set => dir = value;  }
+
+    void Awake()
     {
-        
+        if(Physics.Raycast(transform.position, dir, out hit)) {
+            //If it hit something, check if it's damageble. 
+            //yes? deal damage.
+            //no? get texture coordinate and apply hit texture.
+        } else {
+            //destroy self after x time
+        }
+
+        Debug.Log("Pew!");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+        Timer(lifeTime);
+    }
+
+    IEnumerator Timer(float time) {
+        while(time > 0) {
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        Destroy(this.gameObject);
     }
 }

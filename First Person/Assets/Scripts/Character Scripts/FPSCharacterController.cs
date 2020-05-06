@@ -27,7 +27,7 @@ public class FPSCharacterController : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float speed = 5;
     private float speedMultiplier = 1;
-    [SerializeField] private float jumpHeight = 3;
+    [SerializeField] private float jumpHeight = 3; 
 
     [Header("Camera Control Settings")]
     //Sensitivity might have to be set somewhere else, as senstiivty would be universal to general input, not individual controllable objects.
@@ -36,7 +36,7 @@ public class FPSCharacterController : MonoBehaviour
     [SerializeField] private float minLookAngle = 90;
 
     //I'm 100% sure there is a better way to do this, but i NEED to get something working
-    [SerializeField] private UsableLoadoutItem onHand;
+    [SerializeField] private UsableItem onHand;
 
     private void Awake()
     {
@@ -45,8 +45,9 @@ public class FPSCharacterController : MonoBehaviour
         controls = new InputManager();
         controls.Player.Move.performed += ctx => moveVector = ctx.ReadValue<Vector2>();
         controls.Player.Look.performed += ctx => lookVector = ctx.ReadValue<Vector2>();
-        controls.Player.ChangeStance.started += ctx => ToggleCrouch();
+        controls.Player.ChangeStance.started += ctx => ToggleStance(Stance.Crouch);
         controls.Player.Jump.performed += ctx => Jump();
+        controls.Player.Shoot.performed += ctx => onHand.PrimaryAction();
         #endregion
     }
     private void FixedUpdate()
@@ -55,6 +56,8 @@ public class FPSCharacterController : MonoBehaviour
         currentLookAngle = AddVectorToAngles(lookVector, currentLookAngle);
         Look(currentLookAngle);
     }
+
+
 
     #region Movement
     void Move(Vector2 direction)
@@ -76,7 +79,7 @@ public class FPSCharacterController : MonoBehaviour
     void ToStance(Stance stance) //Neat & compact version of all "To___()" stance functions below
     {
         //determine stance & speed multiplier
-        float heightAndSpeedMultiplier;
+        float heightAndSpeedMultiplier = 0f;
         switch (stance)
         {
             case (Stance.Stand):
@@ -96,38 +99,11 @@ public class FPSCharacterController : MonoBehaviour
 
         currentStance = stance;
     }
-    void ToCrouch()
-    {
-        //bring camera down half the body height
-        transform.localScale = new Vector3(1, baseHeight * 0.5f, 1);
-
-        speedMultiplier = 0.5f;
-
-        currentStance = Stance.Crouch;
-    }
-    void ToStand()
-    {
-        //bring camera to full height (from crouch) 
-        transform.localScale = new Vector3(1, baseHeight, 1);
-        
-        speedMultiplier = 1;
-
-        currentStance = Stance.Stand;
-    } 
-    void ToProne()
-    {
-        //bring camera to full height (from crouch) 
-        transform.localScale = new Vector3(1, baseHeight * 0.2f, 1);
-        
-        speedMultiplier = 0.2f;
-
-        currentStance = Stance.Prone;
-    }
     void ToggleStance(Stance stance)//TODO: A way to allow for individual Stance toggles (e.i. Crouch > Hold and Prone > Toggle)
     {
         if (currentStance == stance)
         {
-            ToStand();
+            ToStance(Stance.Stand);
             Debug.Log("I should be standing now");
         }
         else 
@@ -137,40 +113,6 @@ public class FPSCharacterController : MonoBehaviour
         }
     }
     #endregion
-
-    #region Actions
-    void Reload()
-    {
-
-    }
-    void Fire()
-    {
-        onHand.Shoot();
-    }
-    void Aim()
-    {
-
-    }
-    void SwitchModes()
-    {
-
-    }
-    void Interact()
-    {
-
-    }
-    void QuickMelee()
-    {
-
-    }
-    void SwapToInventory(/*inventory slot*/)
-    {
-
-    }
-    #endregion
-
-
-
 
     //Utilities (to be put into seperate utilities class)
     Vector2 AddVectorToAngles(Vector2 vector, Vector2 angles)
@@ -209,8 +151,9 @@ public class FPSCharacterController : MonoBehaviour
         #region Disable Inputs
         controls.Player.Move.performed -= ctx => moveVector = ctx.ReadValue<Vector2>();
         controls.Player.Look.performed -= ctx => lookVector = ctx.ReadValue<Vector2>();
-        controls.Player.ChangeStance.started -= ctx => ToggleCrouch();
+        controls.Player.ChangeStance.started -= ctx => ToggleStance(Stance.Crouch);
         controls.Player.Jump.performed -= ctx => Jump();
+        controls.Player.Shoot.performed -= ctx => onHand.PrimaryAction();
         #endregion
     }
 }

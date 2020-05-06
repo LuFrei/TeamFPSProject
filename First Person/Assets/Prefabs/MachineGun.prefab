@@ -318,6 +318,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9371f497c96731941ab84785d4f9a935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPoint: {fileID: 7141487377367776814}
+  rateOfFire: 0
+  damage: 0
+  reloadLength: 0
+  magSize: 0
+  ammoPoolLimit: 0
+  hipAccuracy: 0
+  aimAccuracy: 0
+  bullet: {fileID: 2550784476281219091, guid: 120cd6873480de94396fdac515b49dfc, type: 3}
 --- !u!1 &4648363977839718373
 GameObject:
   m_ObjectHideFlags: 0

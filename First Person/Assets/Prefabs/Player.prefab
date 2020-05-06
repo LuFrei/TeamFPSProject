@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5043579246810665544}
   - component: {fileID: 8840910340170280357}
   - component: {fileID: 2687854554416049481}
+  - component: {fileID: 3847002330947062173}
   - component: {fileID: 6573187086025467635}
   - component: {fileID: 1993545315}
   m_Layer: 0
@@ -65,6 +66,73 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3847002330947062173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485424257355365159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 631f1140ee2e92e4da6986750c1fdb20,
+    type: 3}
+  m_NotificationBehavior: 1
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a6184859-d14d-4ee6-a8ba-01373d2320bb
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e13c8b3a-5f3a-4837-b53a-20b3d96614dc
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2987c0f6-fff0-4e75-9e17-a6f3222a77e0
+    m_ActionName: Player/Change Stance[/Keyboard/leftCtrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 153995f2-392f-4147-be8a-85a1a635aa50
+    m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0b4486d7-2b3e-4406-b854-1c81d356041f
+    m_ActionName: Player/Shoot[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9e82b396-7087-49c9-b7c5-6a846a0eb71f
+    m_ActionName: Player/Aim[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 09a9fbca-cec8-4884-a11e-b56d88a30b6b
+    m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9949efd4-03f2-46ae-a480-7fadaea6034a
+    m_ActionName: Player/Reload[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8f6efccf-7204-4b10-a069-4d6e7b35d01e
+    m_ActionName: Player/Melee
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!114 &6573187086025467635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,6 +153,7 @@ MonoBehaviour:
   sensitivity: 0
   maxLookAngle: -90
   minLookAngle: 90
+  onHand: {fileID: 0}
 --- !u!114 &1993545315
 MonoBehaviour:
   m_ObjectHideFlags: 0
