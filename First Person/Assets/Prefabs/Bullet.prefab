@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5800204632795060611}
-  - component: {fileID: 7494073010285470865}
   - component: {fileID: 8621213947645787040}
+  - component: {fileID: 7494073010285470865}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -32,18 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7494073010285470865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2550784476281219091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae42b65e2c85ac04eb75710756be931b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!120 &8621213947645787040
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -84,7 +72,9 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Positions: []
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1.0314357
@@ -105,8 +95,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
-      key1: {r: 0.990566, g: 0.990566, b: 0.990566, a: 0.5686275}
+      key0: {r: 1, g: 0.67510533, b: 0, a: 1}
+      key1: {r: 1, g: 0.6784314, b: 0, a: 1}
       key2: {r: 0.9964761, g: 0.8150259, b: 0.37000555, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -140,3 +130,18 @@ LineRenderer:
     generateLightingData: 1
   m_UseWorldSpace: 0
   m_Loop: 0
+--- !u!114 &7494073010285470865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2550784476281219091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae42b65e2c85ac04eb75710756be931b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dir: {x: 0, y: 0, z: 1}
+  lifeTime: 0.05
+  magnitude: 100

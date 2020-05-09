@@ -35,8 +35,11 @@ public class FPSCharacterController : MonoBehaviour
     [SerializeField] private float maxLookAngle = -90;
     [SerializeField] private float minLookAngle = 90;
 
-    //I'm 100% sure there is a better way to do this, but i NEED to get something working
+    //info for current item player is holding
     [SerializeField] private UsableItem onHand;
+
+
+    public UsableItem OnHand { get => onHand; }
 
     private void Awake()
     {

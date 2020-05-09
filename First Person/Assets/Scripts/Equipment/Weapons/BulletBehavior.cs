@@ -11,16 +11,23 @@ public class BulletBehavior: MonoBehaviour
     private Vector3 dir;
     private RaycastHit hit;
 
-    private float lifeTime = 0.2f;
-    private float magnitude;
+    [SerializeField]private float lifeTime = 0.05f;
+    [SerializeField]private float magnitude = 100;
 
 
 
-    
-    
-
-    public Vector3 Direction { set => dir = value; }
+    public Vector3 Direction {
+        set {
+            if(value == null) {
+                dir = transform.localEulerAngles;
+            } else {
+                dir = value;
+            }
+        }
+    }
     public float Magnitude { set => magnitude = value; }
+    public RaycastHit Hit => hit;
+
 
 
 
@@ -28,36 +35,53 @@ public class BulletBehavior: MonoBehaviour
         //Set variables
         line = GetComponent<LineRenderer>();
         ray = new Ray(transform.position, dir);
-
-        //shoot
-        ShootRay();// this will start a chain reaction of rays later on
-        //draw
-        RenderTracer();
-
     }
 
     void Update() {
-        Timer(lifeTime);
+        StartCoroutine(Timer(lifeTime));
+
+        Debug.DrawRay(ray.origin, ray.direction * magnitude, Color.blue);
+        ShootRay();
     }
+
+    
 
     void ShootRay() {
         if(Physics.Raycast(ray, out hit, magnitude)) {
-            //If it hit something, check if it's damageble. 
-            //yes? deal damage.
-            //no? get texture coordinate and apply hit texture. 
+            if(hit.collider.GetComponent<Health>()) {
+                DealDamage();
+            } else {
+                //get texture coordinate and apply hit texture.
+            }
+
+            Destroy(gameObject);
         }
         Debug.Log("Pew!");
     }
 
-    void RenderTracer() {
-        line.SetPositions(lineVertices);
+    //Needs Health class to be set up first
+    void DealDamage() {
+        //hit.collider.GetComponent<Health>().
     }
+
+    //**  Work on Line Rendering sometime later. **//
+    //void RenderTracer() {
+    //    line.SetPositions(lineVertices);
+    //    line.world
+    //    Debug.Log("Rendering Pew!");
+    //}
+    //
+    //void SetNewLineVertices(Vector3 v1, Vector3 v2) {
+    //    lineVertices[0] = v1;
+    //    lineVertices[1] = v2;
+    //}
+
 
     IEnumerator Timer(float time) {
         while(time > 0) {
             time -= Time.deltaTime;
             yield return null;
         }
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

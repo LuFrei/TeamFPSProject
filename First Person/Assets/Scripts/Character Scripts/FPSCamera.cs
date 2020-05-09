@@ -8,7 +8,7 @@ using UnityEngine;
 public class FPSCamera : MonoBehaviour
 {
     private Camera cam;
-    private GameObject targetHit;
+    private FPSCharacterController player;
 
     private Ray ray;
     private RaycastHit hit;
@@ -18,6 +18,7 @@ public class FPSCamera : MonoBehaviour
     void Awake()
     {
         cam = GetComponent<Camera>();
+        player = GetComponent<FPSCharacterController>();
         centerPoint = new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, 0);
     }
 

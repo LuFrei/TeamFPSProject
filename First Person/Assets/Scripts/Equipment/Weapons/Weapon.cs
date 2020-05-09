@@ -20,23 +20,20 @@ public class Weapon : UsableItem
 
     //Bullet info
     [SerializeField]private GameObject bullet;
+    private Vector3 bulletDirection; //used for spread calculations and camera raycast modifier
 
-    //TODO: Recoil algorithm. This sh ould be adjustable for every individual weapon:
-    //1. the "cone" path of the bounce
-    //2. the "power" of each kick
-    //3. the "reset" value of the recoil
+    public Vector3 BulletDirection { set => bulletDirection = value; }
 
-        //NOTE: I'll have to find a way to generate a ray based on accuracy, for now it'll just shoot straight
     public void Shoot(){
-        Instantiate(bullet, bulletPoint.position, Quaternion.Euler(Vector3.forward));
+        Instantiate(bullet, bulletPoint.position, transform.localRotation);
         Debug.Log("I went bang!");
     }
 
 
 
+
     //UsableItem integration
-    public override void PrimaryAction()
-    {
+    public override void PrimaryAction(){ 
         Shoot(); 
     }
 
