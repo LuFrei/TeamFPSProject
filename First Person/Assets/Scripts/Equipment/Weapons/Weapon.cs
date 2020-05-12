@@ -20,12 +20,11 @@ public class Weapon : UsableItem
 
     //Bullet info
     [SerializeField]private GameObject bullet;
-    private Vector3 bulletDirection; //used for spread calculations and camera raycast modifier
 
-    public Vector3 BulletDirection { set => bulletDirection = value; }
 
     public void Shoot(){
-        Instantiate(bullet, bulletPoint.position, transform.localRotation);
+        bullet.GetComponent<BulletBehavior>().direction = rayDir; 
+        Instantiate(bullet, bulletPoint.position, Quaternion.identity);
         Debug.Log("I went bang!");
     }
 

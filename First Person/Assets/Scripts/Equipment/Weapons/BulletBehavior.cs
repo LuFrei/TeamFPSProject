@@ -8,23 +8,16 @@ public class BulletBehavior: MonoBehaviour
     private Vector3[] lineVertices = new Vector3[2];
 
     private Ray ray;
-    private Vector3 dir;
+    public Vector3 direction;
     private RaycastHit hit;
 
     [SerializeField]private float lifeTime = 0.05f;
+    [SerializeField]private float decayState = 100; //determines when a bullet should be destroyed (time/hit based)
     [SerializeField]private float magnitude = 100;
 
+    [SerializeField]private GameObject[] bulletHoleTexture;
 
 
-    public Vector3 Direction {
-        set {
-            if(value == null) {
-                dir = transform.localEulerAngles;
-            } else {
-                dir = value;
-            }
-        }
-    }
     public float Magnitude { set => magnitude = value; }
     public RaycastHit Hit => hit;
 
@@ -32,54 +25,56 @@ public class BulletBehavior: MonoBehaviour
 
 
     void Awake(){
-        //Set variables
+        //Set variables 
         line = GetComponent<LineRenderer>();
-        ray = new Ray(transform.position, dir);
+        ray = new Ray(transform.position, direction);
+ 
+        Debug.DrawRay(ray.origin, ray.direction * magnitude, Color.blue);
+        ShootRay();
+
+        Debug.Log(ray.direction); 
     }
 
     void Update() {
-        StartCoroutine(Timer(lifeTime));
-
-        Debug.DrawRay(ray.origin, ray.direction * magnitude, Color.blue);
-        ShootRay();
+        StartCoroutine(Timer(decayState, 2000));
     }
 
     
 
-    void ShootRay() {
+    private void ShootRay() {
+        
+        Debug.Log("Pew!");
+
         if(Physics.Raycast(ray, out hit, magnitude)) {
             if(hit.collider.GetComponent<Health>()) {
-                DealDamage();
-            } else {
-                //get texture coordinate and apply hit texture.
+                DealDamage(hit);
             }
-
-            Destroy(gameObject);
+            Debug.Log($"I hit {hit.collider.name}!");
+            ApplyHitTexture(hit);
+            Decay(100);
         }
-        Debug.Log("Pew!");
     }
 
     //Needs Health class to be set up first
-    void DealDamage() {
+    private void DealDamage(RaycastHit hit) {
         //hit.collider.GetComponent<Health>().
     }
 
-    //**  Work on Line Rendering sometime later. **//
-    //void RenderTracer() {
-    //    line.SetPositions(lineVertices);
-    //    line.world
-    //    Debug.Log("Rendering Pew!");
-    //}
-    //
-    //void SetNewLineVertices(Vector3 v1, Vector3 v2) {
-    //    lineVertices[0] = v1;
-    //    lineVertices[1] = v2;
-    //}
+    private void ApplyHitTexture(RaycastHit hit) {
+        //For now,it selectgs a random texture, might have dynamic textures later based on what it hit. (might store texture values on the object being hit itself.
+        Instantiate(bulletHoleTexture[Random.Range(0, 4)], hit.point, Quaternion.LookRotation(hit.normal));
+    }
 
+    private void Decay(float decayValue) {
+        decayState -= decayValue;
+        if(decayState <= 0) {
+            Destroy(gameObject);
+        }
+    }
 
-    IEnumerator Timer(float time) {
+    IEnumerator Timer(float time, float multiplier = 1) {
         while(time > 0) {
-            time -= Time.deltaTime;
+            time -= Time.deltaTime * multiplier;
             yield return null;
         }
         Destroy(gameObject);

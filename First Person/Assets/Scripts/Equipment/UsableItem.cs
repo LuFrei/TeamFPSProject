@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class UsableItem : MonoBehaviour{
 
-    protected RaycastHit hitInfo;//This is used to take info from FPSCam and pass it on to individual item for use
+    protected Vector3 rayDir;//This is used to take info from FPSCam and pass it on to individual item for use
+    public Vector3 RayDirection { set => rayDir = value; }
 
     public virtual void PrimaryAction() { }
     public virtual void SecondaryAction() { }

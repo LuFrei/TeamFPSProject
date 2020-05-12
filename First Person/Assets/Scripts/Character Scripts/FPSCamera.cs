@@ -8,26 +8,29 @@ using UnityEngine;
 public class FPSCamera : MonoBehaviour
 {
     private Camera cam;
-    private FPSCharacterController player;
+    [SerializeField]private FPSCharacterController player;
 
     private Ray ray;
     private RaycastHit hit;
     private Vector3 centerPoint;
 
     public RaycastHit Hit => hit;
+
+
     void Awake()
     {
+        centerPoint = new Vector3(0.5f, 0.5f, 0);
         cam = GetComponent<Camera>();
-        player = GetComponent<FPSCharacterController>();
-        centerPoint = new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, 0);
+        player = GetComponentInParent<FPSCharacterController>();
     }
 
     void Update(){
         CastRay(out hit);
+        player.OnHand.RayDirection = ray.direction;
     }
 
     void CastRay(out RaycastHit hit) {
-        ray = cam.ScreenPointToRay(centerPoint);
+        ray = cam.ViewportPointToRay(centerPoint);
         if(Physics.Raycast(ray, out hit)) {
             Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green);
         } else {
