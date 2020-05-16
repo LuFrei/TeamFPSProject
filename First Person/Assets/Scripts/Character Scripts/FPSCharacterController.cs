@@ -39,6 +39,7 @@ public class FPSCharacterController : MonoBehaviour
     [SerializeField] private UsableItem onHand;
 
 
+
     public UsableItem OnHand { get => onHand; }
 
     private void Awake()
@@ -50,7 +51,9 @@ public class FPSCharacterController : MonoBehaviour
         controls.Player.Look.performed += ctx => lookVector = ctx.ReadValue<Vector2>();
         controls.Player.ChangeStance.started += ctx => ToggleStance(Stance.Crouch);
         controls.Player.Jump.performed += ctx => Jump();
-        controls.Player.Shoot.performed += ctx => onHand.PrimaryAction();
+        controls.Player.Shoot.started += ctx => onHand.OnPrimaryActionStart();
+        controls.Player.Shoot.canceled += ctx => onHand.OnPrimaryActionEnd();
+        controls.Player.ChangeMode.performed += ctx => onHand.ChangeMode();
         #endregion
     }
     private void FixedUpdate()
@@ -156,7 +159,7 @@ public class FPSCharacterController : MonoBehaviour
         controls.Player.Look.performed -= ctx => lookVector = ctx.ReadValue<Vector2>();
         controls.Player.ChangeStance.started -= ctx => ToggleStance(Stance.Crouch);
         controls.Player.Jump.performed -= ctx => Jump();
-        controls.Player.Shoot.performed -= ctx => onHand.PrimaryAction();
+        controls.Player.Shoot.performed -= ctx => onHand.OnPrimaryActionStart();
         #endregion
     }
 }

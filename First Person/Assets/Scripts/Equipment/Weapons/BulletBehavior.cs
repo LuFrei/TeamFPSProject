@@ -19,7 +19,7 @@ public class BulletBehavior: MonoBehaviour
 
 
     public float Magnitude { set => magnitude = value; }
-    public RaycastHit Hit => hit;
+    public RaycastHit Hit => hit; 
 
 
 
@@ -27,12 +27,9 @@ public class BulletBehavior: MonoBehaviour
     void Awake(){
         //Set variables 
         line = GetComponent<LineRenderer>();
-        ray = new Ray(transform.position, direction);
- 
+        ray = new Ray(transform.position, transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * magnitude, Color.blue);
         ShootRay();
-
-        Debug.Log(ray.direction); 
     }
 
     void Update() {
@@ -42,14 +39,11 @@ public class BulletBehavior: MonoBehaviour
     
 
     private void ShootRay() {
-        
-        Debug.Log("Pew!");
 
         if(Physics.Raycast(ray, out hit, magnitude)) {
             if(hit.collider.GetComponent<Health>()) {
                 DealDamage(hit);
             }
-            Debug.Log($"I hit {hit.collider.name}!");
             ApplyHitTexture(hit);
             Decay(100);
         }

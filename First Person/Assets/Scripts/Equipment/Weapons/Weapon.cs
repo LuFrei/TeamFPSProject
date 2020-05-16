@@ -1,39 +1,136 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : UsableItem
+public class Weapon: UsableItem
 {
-    [Header("Dependencies")]
-    [SerializeField] private Transform bulletPoint;
+    [Flags] public enum FireMode { Auto = 0, Burst = 1, Single = 2 }
+    public FireMode currentMode;
 
-    [Header ("Weapon Attributes")]
-    [SerializeField]private float rateOfFire; //in Rounds per Min
-    [SerializeField]private float damage;
-    
-    [SerializeField]private float reloadLength; //in Seconds
-    [SerializeField]private int magSize; //Just in case... "0" will be treated as infinite for both mag and pool size (for possible in-game match editing)
-    [SerializeField]private int ammoPoolLimit; 
-    
-    [SerializeField]private float hipAccuracy; //hip-fire bloom
-    [SerializeField]private float aimAccuracy; //ADS bloom (NOTE: This should not be set high. Shots should still land REASNOABLY close to aimed location
+    [Header("Dependencies")]
+    public FPSCamera FPSCam;
+
+    [Header("Weapon Attributes")]
+    [SerializeField] private float rateOfFire; //AutoFire speed
+    [SerializeField] private float damage;
+    [SerializeField] private int burstSize = 3; //if applicable
+
+    [SerializeField] private float reloadSpeed; //in Seconds
+    [SerializeField] private int magSize; //Just in case... "0" will be treated as infinite for both mag and pool size (for possible in-game match editing)
+    [SerializeField] private int ammoPoolLimit;
+
+    [SerializeField] private float hipAccuracy; //hip-fire bloom
+    [SerializeField] private float aimAccuracy; //ADS bloom (NOTE: This should not be set high. Shots should still land REASNOABLY close to aimed location
 
     //Bullet info
-    [SerializeField]private GameObject bullet;
+    [SerializeField] private GameObject bullet;
 
 
-    public void Shoot(){
-        bullet.GetComponent<BulletBehavior>().direction = rayDir; 
-        Instantiate(bullet, bulletPoint.position, Quaternion.identity);
+    //Chamber and Trigger
+    private bool loaded = true; //Ready to shoot the next bullet
+    private bool active; //Am I recieving input
+    private bool ready = true; //Ready for the next input?
+    private float loadBuffer = 1;
+
+    //Magazine and Ammo
+    private int currentMagValue;
+    private int currentReserve;
+    private float reloadProgress;
+
+    private int activeSequence = 0;//Keep track of burst cycle, and possible stat tracking
+
+
+    public float RateOfFire { get { return rateOfFire * 60f; } } //returns in RPM
+
+    private void Update() {
+        //Main
+        if(active && ready) {
+            switch(currentMode) {
+                case FireMode.Auto:
+                    Debug.Log("Shooting Auto");
+                    AutoFire();
+                    break;
+                case FireMode.Burst:
+                    Debug.Log("Shooting Burst");
+                    StartCoroutine(BurstFire());
+                    break;
+                case FireMode.Single:
+                    Debug.Log("Shooting Single");
+                    SingleFire();
+                    break;
+            }
+        }
+
+
+    }
+
+
+
+    private void Shoot() {
+        bullet.GetComponent<BulletBehavior>().direction = rayDir;
+        Instantiate(bullet, FPSCam.Ray.origin, Quaternion.LookRotation(FPSCam.Ray.direction));
         Debug.Log("I went bang!");
+        loadBuffer = 0;
+        loaded = false;
+        StartCoroutine(CycleShot());
+    }
+    
+    private IEnumerator CycleShot() {
+        while(loadBuffer < 1) {
+            loadBuffer += Time.deltaTime * rateOfFire;
+            yield return null; 
+        }
+        loaded = true;
+        Debug.Log("Done Cycling");
     }
 
 
 
 
-    //UsableItem integration
-    public override void PrimaryAction(){ 
-        Shoot(); 
+    private void AutoFire() {
+        if(loaded) {
+            Shoot();
+        }
+    }
+    private void SingleFire() {
+        ready = false;
+        if(loaded) {
+            Shoot();
+        }
+    }
+    private IEnumerator BurstFire() {
+        ready = false;
+        while(activeSequence < burstSize){
+            if(loaded) {
+                Shoot();
+                activeSequence++;
+            }
+            yield return null;
+        }
+        ready = true;
+        activeSequence = 0;
     }
 
+
+    public override void OnPrimaryActionStart() { 
+        active = true;
+    }
+
+    //Restart parameters
+    public override void OnPrimaryActionEnd() {
+        active = false;
+        if(currentMode == FireMode.Single)
+            ready = true;
+    }
+
+    public override void ChangeMode() {
+        if(currentMode < FireMode.Single) {
+            currentMode++;
+        } else {
+            currentMode = FireMode.Auto;
+        }
+
+        Debug.Log(currentMode);
+    }
 }

@@ -318,8 +318,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9371f497c96731941ab84785d4f9a935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPoint: {fileID: 7141487377367776814}
-  rateOfFire: 0
+  currentMode: 0
+  FPSCam: {fileID: 0}
+  rateOfFire: 0.5
   damage: 0
   reloadLength: 0
   magSize: 0

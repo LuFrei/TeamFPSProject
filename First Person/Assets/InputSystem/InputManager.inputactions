@@ -41,7 +41,7 @@
                     "name": "Shoot",
                     "type": "Button",
                     "id": "0b4486d7-2b3e-4406-b854-1c81d356041f",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -73,6 +73,14 @@
                     "name": "Melee",
                     "type": "Button",
                     "id": "8f6efccf-7204-4b10-a069-4d6e7b35d01e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Change Mode",
+                    "type": "Button",
+                    "id": "8e02380e-9d99-4c98-8be6-45cc8b54a723",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -291,11 +299,44 @@
                 {
                     "name": "",
                     "id": "cef61bcc-967c-47a1-b63f-ccb4c886668d",
-                    "path": "",
+                    "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KBM",
                     "action": "Melee",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cb29683f-05de-4789-808f-49ac835d3889",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS4",
+                    "action": "Melee",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6f31a049-fd73-4499-867b-3f15ad66c88d",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "Change Mode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88d9e316-ba77-4075-8882-cfc7618178c8",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS4",
+                    "action": "Change Mode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

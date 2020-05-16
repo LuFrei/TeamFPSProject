@@ -14,6 +14,7 @@ public class FPSCamera : MonoBehaviour
     private RaycastHit hit;
     private Vector3 centerPoint;
 
+    public Ray Ray => ray;
     public RaycastHit Hit => hit;
 
 
