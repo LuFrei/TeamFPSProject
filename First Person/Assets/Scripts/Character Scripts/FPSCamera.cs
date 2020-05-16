@@ -30,7 +30,7 @@ public class FPSCamera : MonoBehaviour
         player.OnHand.RayDirection = ray.direction;
     }
 
-    void CastRay(out RaycastHit hit) {
+    private void CastRay(out RaycastHit hit) {
         ray = cam.ViewportPointToRay(centerPoint);
         if(Physics.Raycast(ray, out hit)) {
             Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green);
@@ -39,12 +39,14 @@ public class FPSCamera : MonoBehaviour
         }
     }
 
-
-    /// <summary>
-    /// function used for screen "kick". USeful for Flinching, recoil, and other effects.
-    /// </summary>
-    /// <param name="magnitude">force of the kick</param>
-    /// <param name="vector">direction of the kick</param>
+    public Quaternion GenerateRandomDeviation(float magnitude) {
+        Quaternion baseDir = Quaternion.LookRotation(ray.direction);
+        float xDeviation = Random.Range(-magnitude, magnitude);
+        float yDeviation = Random.Range(-magnitude, magnitude);
+        baseDir *= Quaternion.AngleAxis(yDeviation, Vector3.right);
+        baseDir *= Quaternion.AngleAxis(xDeviation, Vector3.up);
+        return baseDir;
+    }
     public void Kick(float magnitude, Vector2 vector){
 
     }

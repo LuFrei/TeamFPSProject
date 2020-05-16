@@ -20,6 +20,7 @@ public class Weapon: UsableItem
     [SerializeField] private int magSize; //Just in case... "0" will be treated as infinite for both mag and pool size (for possible in-game match editing)
     [SerializeField] private int ammoPoolLimit;
 
+    [SerializeField] private float recoil;
     [SerializeField] private float hipAccuracy; //hip-fire bloom
     [SerializeField] private float aimAccuracy; //ADS bloom (NOTE: This should not be set high. Shots should still land REASNOABLY close to aimed location
 
@@ -31,6 +32,7 @@ public class Weapon: UsableItem
     private bool loaded = true; //Ready to shoot the next bullet
     private bool active; //Am I recieving input
     private bool ready = true; //Ready for the next input?
+
     private float loadBuffer = 1;
 
     //Magazine and Ammo
@@ -68,8 +70,7 @@ public class Weapon: UsableItem
 
 
     private void Shoot() {
-        bullet.GetComponent<BulletBehavior>().direction = rayDir;
-        Instantiate(bullet, FPSCam.Ray.origin, Quaternion.LookRotation(FPSCam.Ray.direction));
+        Instantiate(bullet, FPSCam.Ray.origin, FPSCam.GenerateRandomDeviation(hipAccuracy));
         Debug.Log("I went bang!");
         loadBuffer = 0;
         loaded = false;
@@ -87,7 +88,7 @@ public class Weapon: UsableItem
 
 
 
-
+    #region FireModes
     private void AutoFire() {
         if(loaded) {
             Shoot();
@@ -100,6 +101,7 @@ public class Weapon: UsableItem
         }
     }
     private IEnumerator BurstFire() {
+        active = false;
         ready = false;
         while(activeSequence < burstSize){
             if(loaded) {
@@ -111,7 +113,7 @@ public class Weapon: UsableItem
         ready = true;
         activeSequence = 0;
     }
-
+    #endregion
 
     public override void OnPrimaryActionStart() { 
         active = true;

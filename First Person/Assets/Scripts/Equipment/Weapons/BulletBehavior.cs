@@ -8,7 +8,6 @@ public class BulletBehavior: MonoBehaviour
     private Vector3[] lineVertices = new Vector3[2];
 
     private Ray ray;
-    public Vector3 direction;
     private RaycastHit hit;
 
     [SerializeField]private float lifeTime = 0.05f;
