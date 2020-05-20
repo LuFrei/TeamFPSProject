@@ -11,6 +11,7 @@ public class Weapon: UsableItem
     [Header("Dependencies")]
     public FPSCamera FPSCam;
 
+    #region attributes
     [Header("Weapon Attributes")]
     [SerializeField] private float rateOfFire; //AutoFire speed
     [SerializeField] private float damage;
@@ -21,12 +22,19 @@ public class Weapon: UsableItem
     [SerializeField] private int ammoPoolLimit;
 
     [SerializeField] private float recoil;
+    [SerializeField] private float recoilControl;
     [SerializeField] private float hipAccuracy; //hip-fire bloom
-    [SerializeField] private float aimAccuracy; //ADS bloom (NOTE: This should not be set high. Shots should still land REASNOABLY close to aimed location
+    [SerializeField] private float aimAccuracy;
+    #endregion
+
+
+    //
+    private float hipMaxAccuracy;
+    private float hipMinAccuracy;
+
 
     //Bullet info
     [SerializeField] private GameObject bullet;
-
 
     //Chamber and Trigger
     private bool loaded = true; //Ready to shoot the next bullet
@@ -71,11 +79,12 @@ public class Weapon: UsableItem
 
     private void Shoot() {
         Instantiate(bullet, FPSCam.Ray.origin, FPSCam.GenerateRandomDeviation(hipAccuracy));
+        FPSCam.Kick(recoil, recoilControl);
         Debug.Log("I went bang!");
         loadBuffer = 0;
         loaded = false;
         StartCoroutine(CycleShot());
-    }
+    } 
     
     private IEnumerator CycleShot() {
         while(loadBuffer < 1) {

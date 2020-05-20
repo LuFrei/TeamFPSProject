@@ -39,15 +39,19 @@ public class FPSCamera : MonoBehaviour
         }
     }
 
-    public Quaternion GenerateRandomDeviation(float magnitude) {
-        Quaternion baseDir = Quaternion.LookRotation(ray.direction);
-        float xDeviation = Random.Range(-magnitude, magnitude);
-        float yDeviation = Random.Range(-magnitude, magnitude);
-        baseDir *= Quaternion.AngleAxis(yDeviation, Vector3.right);
-        baseDir *= Quaternion.AngleAxis(xDeviation, Vector3.up);
-        return baseDir;
-    }
-    public void Kick(float magnitude, Vector2 vector){
 
+    public Quaternion GenerateRandomDeviation(float maxMagnitude) {
+        Quaternion newDirection = Quaternion.LookRotation(ray.direction);
+        float angle = Random.Range(0, 360);
+        float magnitude = Random.Range(0, maxMagnitude);
+        newDirection *= Quaternion.AngleAxis(angle, Vector3.forward);
+        newDirection *= Quaternion.AngleAxis(magnitude, Vector3.right);
+        return newDirection;
+    }
+
+    public void Kick(float magnitude, float hozDirection){
+        Vector2 kickVector = Vector2.up;
+        kickVector.x = Random.Range(-hozDirection, hozDirection)/100;
+        player.lookAngle += kickVector * magnitude;
     }
 }

@@ -17,7 +17,7 @@ public class FPSCharacterController : MonoBehaviour
     //This might be moved out and to be produced by Input Manager and AI Classes
     private Vector2 moveVector;
     private Vector2 lookVector;
-    private Vector2 currentLookAngle;
+    public Vector2 lookAngle;
 
     private float baseHeight;
 
@@ -59,8 +59,8 @@ public class FPSCharacterController : MonoBehaviour
     private void FixedUpdate()
     {
         Move(moveVector);
-        currentLookAngle = AddVectorToAngles(lookVector, currentLookAngle);
-        Look(currentLookAngle);
+        lookAngle = AddVectorToAngles(lookVector, lookAngle);
+        Look(lookAngle);
     }
 
 
