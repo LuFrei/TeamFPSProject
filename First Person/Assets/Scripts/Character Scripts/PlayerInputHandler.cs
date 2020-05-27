@@ -20,7 +20,7 @@ public class PlayerInputHandler : MonoBehaviour
         input.Player.Look.performed += ctx => player.LookVector = ctx.ReadValue<Vector2>();
         input.Player.Jump.performed += ctx => player.Jump();
         input.Player.Shoot.started += ctx => player.OnHand.OnPrimaryActionStart();
-        input.Player.Shoot.canceled += ctx => player.OnHand.OnPrimaryActionEnd();
+        input.Player.Shoot.canceled += ctx => player.OnHand.OnPrimaryActionEnd(); 
         input.Player.ChangeMode.performed += ctx => player.OnHand.ChangeMode();
 
         input.General.OpenMenu.performed += ctx => gm.ChangeGameState();
