@@ -142,7 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae42b65e2c85ac04eb75710756be931b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: 0}
   lifeTime: 0.05
   decayState: 100
   magnitude: 100

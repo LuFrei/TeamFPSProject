@@ -18,18 +18,19 @@ public class FPSCamera : MonoBehaviour
     public RaycastHit Hit => hit;
 
 
-    void Awake()
+    private void Awake()
     {
         centerPoint = new Vector3(0.5f, 0.5f, 0);
         cam = GetComponent<Camera>();
         player = GetComponentInParent<FPSCharacterController>();
     }
 
-    void Update(){
+    private void Update(){
         CastRay(out hit);
         player.OnHand.RayDirection = ray.direction;
     }
 
+    
     private void CastRay(out RaycastHit hit) {
         ray = cam.ViewportPointToRay(centerPoint);
         if(Physics.Raycast(ray, out hit)) {

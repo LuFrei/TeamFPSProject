@@ -16,6 +16,4 @@ public class Health : MonoBehaviour
         if(value > maxValue) 
             value = maxValue;
     }
-
-
 }

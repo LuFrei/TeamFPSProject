@@ -30,6 +30,22 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Crouch",
+                    "type": "PassThrough",
+                    "id": "5abfcb1b-bb6c-48a5-b79a-80b36f3d6ba0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Prone",
+                    "type": "PassThrough",
+                    "id": "da92b252-d766-40be-b350-72cd0b6fde74",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "153995f2-392f-4147-be8a-85a1a635aa50",
@@ -339,6 +355,28 @@
                     "action": "Change Mode",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be1b5dd5-263a-4fa6-b0a2-05ce98ddd00f",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b2695a4-28cd-4047-87e4-26338b531dbb",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "Prone",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -347,7 +385,7 @@
             "id": "a27d1d6e-648e-4ad2-8e02-b2710072728c",
             "actions": [
                 {
-                    "name": "Pause",
+                    "name": "Open Menu",
                     "type": "Button",
                     "id": "dd100e8c-bfb5-4e18-9b1e-75a94bbace41",
                     "expectedControlType": "",
@@ -363,7 +401,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KBM",
-                    "action": "Pause",
+                    "action": "Open Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -374,7 +412,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PS4",
-                    "action": "Pause",
+                    "action": "Open Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

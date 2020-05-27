@@ -5,13 +5,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-
     public enum GameState { Paused, Running}
     public GameState currentGameState = GameState.Running;
 
 
-
-    private void ChangeGameState() {
+    public void ChangeGameState() {
         if(currentGameState == GameState.Running) {
             currentGameState = GameState.Paused;
             Cursor.lockState = CursorLockMode.None;

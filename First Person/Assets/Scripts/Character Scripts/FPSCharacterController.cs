@@ -3,13 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Stance { 
+    Stand, 
+    Crouch, 
+    Prone 
+}
 /// <summary>
 /// The "Puppet" controls for the character.
 /// </summary>
-public class FPSCharacterController : MonoBehaviour
+public class FPSCharacterController: MonoBehaviour
 {
     [Header("Dependencies")]
-    [SerializeField] private InputManager controls;
     [SerializeField] private Transform head;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GroundCheck gc;
@@ -21,40 +25,32 @@ public class FPSCharacterController : MonoBehaviour
 
     private float baseHeight;
 
-    private enum Stance { Stand, Crouch, Prone };
-    private Stance currentStance;
+    
+    public Stance currentStance;
 
     [Header("Movement Settings")]
     [SerializeField] private float speed = 5;
     private float speedMultiplier = 1;
-    [SerializeField] private float jumpHeight = 3; 
+    [SerializeField] private float jumpHeight = 3;
 
     [Header("Camera Control Settings")]
     //Sensitivity might have to be set somewhere else, as senstiivty would be universal to general input, not individual controllable objects.
-    [SerializeField] private float sensitivity = 5 ;
+    [SerializeField] private float sensitivity = 5;
     [SerializeField] private float maxLookAngle = -90;
     [SerializeField] private float minLookAngle = 90;
 
     //info for current item player is holding
-    [SerializeField] private UsableItem onHand;
-
-
-
-    public UsableItem OnHand { get => onHand; }
+    [SerializeField]private UsableItem onHand;
+     
+    public UsableItem OnHand => onHand;
+    public Vector2 MoveVector { set => moveVector = value; }
+    public Vector2 LookVector { set => lookVector = value; }
+    public Stance CurrentStance => currentStance;
 
     private void Awake()
     {
-        baseHeight = transform.localScale.y;
-        #region Input to Action assignment
-        controls = new InputManager();
-        controls.Player.Move.performed += ctx => moveVector = ctx.ReadValue<Vector2>();
-        controls.Player.Look.performed += ctx => lookVector = ctx.ReadValue<Vector2>();
-        controls.Player.ChangeStance.started += ctx => ToggleStance(Stance.Crouch);
-        controls.Player.Jump.performed += ctx => Jump();
-        controls.Player.Shoot.started += ctx => onHand.OnPrimaryActionStart();
-        controls.Player.Shoot.canceled += ctx => onHand.OnPrimaryActionEnd();
-        controls.Player.ChangeMode.performed += ctx => onHand.ChangeMode();
-        #endregion
+        baseHeight = head.transform.localPosition.y;
+
     }
     private void FixedUpdate()
     {
@@ -66,25 +62,24 @@ public class FPSCharacterController : MonoBehaviour
 
 
     #region Movement
-    void Move(Vector2 direction)
+    public void Move(Vector2 direction)
     {
         direction = StandardizeVector(direction, speed * speedMultiplier);
         transform.Translate(direction.x, 0, direction.y);
     }
-    void Look(Vector2 angle)
+    public void Look(Vector2 angle)
     {
         head.transform.localRotation = Quaternion.Euler(-angle.y, transform.localRotation.y, transform.localRotation.z); //y inverted as it seems that up is -x
         transform.localRotation = Quaternion.Euler(transform.localRotation.x, angle.x, transform.localRotation.z);  //un-touched angles are set to current angles to allow for outside forces to effect these things (without snapping abck to 0)
 
     }
-    void Jump()
+    public void Jump()
     {
         rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         //for now we will be implementing force, however it's usually unpredictable, so I'd like to have a look into this later
     }
-    void ToStance(Stance stance) //Neat & compact version of all "To___()" stance functions below
+    public void ToStance(Stance stance)
     {
-        //determine stance & speed multiplier
         float heightAndSpeedMultiplier = 0f;
         switch (stance)
         {
@@ -93,33 +88,29 @@ public class FPSCharacterController : MonoBehaviour
                 break;
             case (Stance.Crouch):
                 heightAndSpeedMultiplier = 0.5f;
-                break;
+                break; 
             case (Stance.Prone):
                 heightAndSpeedMultiplier = 0.2f;
                 break;
         }
         //apply multipliers
-        transform.localScale = new Vector3(1, baseHeight * heightAndSpeedMultiplier, 1);
+        head.transform.localPosition = new Vector3(0, baseHeight * heightAndSpeedMultiplier, 0);
 
         speedMultiplier = heightAndSpeedMultiplier;
 
         currentStance = stance;
     }
-    void ToggleStance(Stance stance)//TODO: A way to allow for individual Stance toggles (e.i. Crouch > Hold and Prone > Toggle)
+    public void ChangeStance(Stance stance)//TODO: A way to allow for individual Stance toggles (e.i. Crouch > Hold and Prone > Toggle)
     {
-        if (currentStance == stance)
-        {
+        if(currentStance == stance) {
             ToStance(Stance.Stand);
             Debug.Log("I should be standing now");
-        }
-        else 
-        {
+        } else {
             ToStance(stance);
             Debug.Log("I should be crouching now");
         }
     }
     #endregion
-
     //Utilities (to be put into seperate utilities class)
     Vector2 AddVectorToAngles(Vector2 vector, Vector2 angles)
     {
@@ -141,25 +132,5 @@ public class FPSCharacterController : MonoBehaviour
     Vector2 StandardizeVector(Vector2 value, float multiplier = 1)
     {
         return value * Time.deltaTime * multiplier;
-    }
-
-     
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
-    private void OnDestroy()
-    {
-        #region Disable Inputs
-        controls.Player.Move.performed -= ctx => moveVector = ctx.ReadValue<Vector2>();
-        controls.Player.Look.performed -= ctx => lookVector = ctx.ReadValue<Vector2>();
-        controls.Player.ChangeStance.started -= ctx => ToggleStance(Stance.Crouch);
-        controls.Player.Jump.performed -= ctx => Jump();
-        controls.Player.Shoot.performed -= ctx => onHand.OnPrimaryActionStart();
-        #endregion
     }
 }

@@ -43,6 +43,22 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Crouch"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""5abfcb1b-bb6c-48a5-b79a-80b36f3d6ba0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Prone"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""da92b252-d766-40be-b350-72cd0b6fde74"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""153995f2-392f-4147-be8a-85a1a635aa50"",
@@ -352,6 +368,28 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""action"": ""Change Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be1b5dd5-263a-4fa6-b0a2-05ce98ddd00f"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b2695a4-28cd-4047-87e4-26338b531dbb"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""Prone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -360,7 +398,7 @@ public class @InputManager : IInputActionCollection, IDisposable
             ""id"": ""a27d1d6e-648e-4ad2-8e02-b2710072728c"",
             ""actions"": [
                 {
-                    ""name"": ""Pause"",
+                    ""name"": ""Open Menu"",
                     ""type"": ""Button"",
                     ""id"": ""dd100e8c-bfb5-4e18-9b1e-75a94bbace41"",
                     ""expectedControlType"": """",
@@ -376,7 +414,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KBM"",
-                    ""action"": ""Pause"",
+                    ""action"": ""Open Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -387,7 +425,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PS4"",
-                    ""action"": ""Pause"",
+                    ""action"": ""Open Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -429,6 +467,8 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_ChangeStance = m_Player.FindAction("Change Stance", throwIfNotFound: true);
+        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+        m_Player_Prone = m_Player.FindAction("Prone", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
@@ -438,7 +478,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_Player_ChangeMode = m_Player.FindAction("Change Mode", throwIfNotFound: true);
         // General
         m_General = asset.FindActionMap("General", throwIfNotFound: true);
-        m_General_Pause = m_General.FindAction("Pause", throwIfNotFound: true);
+        m_General_OpenMenu = m_General.FindAction("Open Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -491,6 +531,8 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_ChangeStance;
+    private readonly InputAction m_Player_Crouch;
+    private readonly InputAction m_Player_Prone;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Aim;
@@ -505,6 +547,8 @@ public class @InputManager : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @ChangeStance => m_Wrapper.m_Player_ChangeStance;
+        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+        public InputAction @Prone => m_Wrapper.m_Player_Prone;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
@@ -530,6 +574,12 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @ChangeStance.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeStance;
                 @ChangeStance.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeStance;
                 @ChangeStance.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeStance;
+                @Crouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                @Crouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                @Crouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                @Prone.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnProne;
+                @Prone.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnProne;
+                @Prone.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnProne;
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
@@ -564,6 +614,12 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @ChangeStance.started += instance.OnChangeStance;
                 @ChangeStance.performed += instance.OnChangeStance;
                 @ChangeStance.canceled += instance.OnChangeStance;
+                @Crouch.started += instance.OnCrouch;
+                @Crouch.performed += instance.OnCrouch;
+                @Crouch.canceled += instance.OnCrouch;
+                @Prone.started += instance.OnProne;
+                @Prone.performed += instance.OnProne;
+                @Prone.canceled += instance.OnProne;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -593,12 +649,12 @@ public class @InputManager : IInputActionCollection, IDisposable
     // General
     private readonly InputActionMap m_General;
     private IGeneralActions m_GeneralActionsCallbackInterface;
-    private readonly InputAction m_General_Pause;
+    private readonly InputAction m_General_OpenMenu;
     public struct GeneralActions
     {
         private @InputManager m_Wrapper;
         public GeneralActions(@InputManager wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Pause => m_Wrapper.m_General_Pause;
+        public InputAction @OpenMenu => m_Wrapper.m_General_OpenMenu;
         public InputActionMap Get() { return m_Wrapper.m_General; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -608,16 +664,16 @@ public class @InputManager : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_GeneralActionsCallbackInterface != null)
             {
-                @Pause.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnPause;
-                @Pause.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnPause;
-                @Pause.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnPause;
+                @OpenMenu.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnOpenMenu;
+                @OpenMenu.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnOpenMenu;
+                @OpenMenu.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnOpenMenu;
             }
             m_Wrapper.m_GeneralActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
+                @OpenMenu.started += instance.OnOpenMenu;
+                @OpenMenu.performed += instance.OnOpenMenu;
+                @OpenMenu.canceled += instance.OnOpenMenu;
             }
         }
     }
@@ -645,6 +701,8 @@ public class @InputManager : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnChangeStance(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
+        void OnProne(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
@@ -655,6 +713,6 @@ public class @InputManager : IInputActionCollection, IDisposable
     }
     public interface IGeneralActions
     {
-        void OnPause(InputAction.CallbackContext context);
+        void OnOpenMenu(InputAction.CallbackContext context);
     }
 }
