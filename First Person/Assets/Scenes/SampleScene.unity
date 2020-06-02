@@ -124,6 +124,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &56579757 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8551715616552070212, guid: 0e590f624efa10d42aa6d1f7736886a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 755393323005155480}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &137276108 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 137276108, guid: 0e590f624efa10d42aa6d1f7736886a5,
@@ -1556,12 +1562,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758633809}
   m_CullTransparentMesh: 0
---- !u!4 &1803620593 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1632644046941459038, guid: 0e590f624efa10d42aa6d1f7736886a5,
-    type: 3}
-  m_PrefabInstance: {fileID: 755393323005155480}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1857188572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,7 +1922,7 @@ PrefabInstance:
         type: 3}
       propertyPath: head
       value: 
-      objectReference: {fileID: 1803620593}
+      objectReference: {fileID: 56579757}
     - target: {fileID: 8953835769880620320, guid: 0e590f624efa10d42aa6d1f7736886a5,
         type: 3}
       propertyPath: gm

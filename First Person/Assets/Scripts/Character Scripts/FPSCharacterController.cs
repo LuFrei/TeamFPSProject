@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum Stance { 
     Stand, 
@@ -20,9 +17,12 @@ public class FPSCharacterController: MonoBehaviour
 
     //This might be moved out and to be produced by Input Manager and AI Classes
     private Vector2 moveVector;
-    private Vector2 lookVector;
-    public Vector2 lookAngle; //Total angle inclusing things like camera kick
-    public Vector2 mouseLookAngle; //records the angle the camera should be exclusively from mouse input
+    [SerializeField]private Vector2 lookAngle; //Total angle inclusing things like camera kick
+    [SerializeField]private Vector2 mouseLookAngle; //records the angle the camera should be exclusively from mouse input
+
+    [SerializeField]private float restoreVelocity;
+    [SerializeField]private float restoreSpeed;
+
 
     private float baseHeight;
 
@@ -47,8 +47,18 @@ public class FPSCharacterController: MonoBehaviour
     public Vector2 MoveVector { set => moveVector = value * Time.deltaTime * (speed * speedMultiplier); }
     public Vector2 LookVector {
         set {
-            lookAngle += value * Time.deltaTime * sensitivity;
+            Vector2 vector = value * Time.deltaTime * sensitivity;
+            mouseLookAngle += vector;
+            lookAngle += vector;
+
+            mouseLookAngle.y = Mathf.Clamp(mouseLookAngle.y, minLookAngle, maxLookAngle);
             lookAngle.y = Mathf.Clamp(lookAngle.y, minLookAngle, maxLookAngle);
+
+        }
+    }
+    public Vector2 LookOffsetVector {
+        set {
+            lookAngle += value;
         }
     }
     public Stance CurrentStance => currentStance;
@@ -61,11 +71,11 @@ public class FPSCharacterController: MonoBehaviour
     {
         Move(moveVector);
         Look(lookAngle);
+        ResetView(restoreSpeed);
     }
 
 
 
-    #region Movement
     public void Move(Vector2 direction)
     {
         transform.Translate(direction.x, 0, direction.y);
@@ -75,13 +85,14 @@ public class FPSCharacterController: MonoBehaviour
         head.transform.localRotation = Quaternion.Euler(-angle.y, 0, 0); //y inverted as it seems that up is -x
         transform.localRotation = Quaternion.Euler(0, angle.x, 0);  //un-touched angles are set to current angles to allow for outside forces to effect these things (without snapping abck to 0)
     }
-
+    private void ResetView(float speed) {
+        lookAngle.y = Mathf.SmoothDamp(lookAngle.y, mouseLookAngle.y, ref restoreVelocity, speed);
+    }
     public void Jump()
     {
         rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         //for now we will be implementing force, however it's usually unpredictable, so I'd like to have a look into this later
     }
- 
     public void ToStance(Stance stance){
         float heightAndSpeedMultiplier = 0f;
         switch (stance)
@@ -102,16 +113,5 @@ public class FPSCharacterController: MonoBehaviour
         speedMultiplier = heightAndSpeedMultiplier;
 
         currentStance = stance;
-    }
-
-    #endregion
-    //Utilities (to be put into seperate utilities class)
-    private Vector2 AddVectorToAngles(Vector2 vector, Vector2 angles)
-    {
-
-        //check constraints
-        
-
-        return angles;
     }
 }

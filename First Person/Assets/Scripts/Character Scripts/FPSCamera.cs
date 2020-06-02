@@ -49,13 +49,11 @@ public class FPSCamera : MonoBehaviour
         return newDirection;
     }
 
-    public void Kick(float magnitude, float hozDirection){
+    public void Kick(float magnitude, float hozDirection) {
         Vector2 kickVector = Vector2.up;
-        kickVector.x = Random.Range(-hozDirection, hozDirection)/100;
-        player.lookAngle += kickVector * magnitude;
+        kickVector.x = Random.Range(-hozDirection, hozDirection) / 100;
+        player.LookOffsetVector = kickVector * magnitude;
     }
 
-    private void ResetView(float speed) {
-        cam.transform.localRotation = Quaternion.RotateTowards(Quaternion.Euler(player.lookAngle), Quaternion.Euler(player.mouseLookAngle), speed);
-    }
+
 }
