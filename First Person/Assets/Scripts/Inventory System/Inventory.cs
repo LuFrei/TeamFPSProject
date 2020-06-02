@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 //Inventory system will use a NumID system that can be assigned to anything outside of this class.
 //0 will Always be treated as "empty"
-public class Inventory
+public class Inventory : MonoBehaviour
 {
     private int size;
     private UsableItem[] inventory;

@@ -21,7 +21,8 @@ public class FPSCharacterController: MonoBehaviour
     //This might be moved out and to be produced by Input Manager and AI Classes
     private Vector2 moveVector;
     private Vector2 lookVector;
-    public Vector2 lookAngle;
+    public Vector2 lookAngle; //Total angle inclusing things like camera kick
+    public Vector2 mouseLookAngle; //records the angle the camera should be exclusively from mouse input
 
     private float baseHeight;
 
@@ -43,19 +44,22 @@ public class FPSCharacterController: MonoBehaviour
     [SerializeField]private UsableItem onHand;
      
     public UsableItem OnHand => onHand;
-    public Vector2 MoveVector { set => moveVector = value; }
-    public Vector2 LookVector { set => lookVector = value; }
+    public Vector2 MoveVector { set => moveVector = value * Time.deltaTime * (speed * speedMultiplier); }
+    public Vector2 LookVector {
+        set {
+            lookAngle += value * Time.deltaTime * sensitivity;
+            lookAngle.y = Mathf.Clamp(lookAngle.y, minLookAngle, maxLookAngle);
+        }
+    }
     public Stance CurrentStance => currentStance;
 
     private void Awake()
     {
         baseHeight = head.transform.localPosition.y;
-
     }
     private void FixedUpdate()
     {
         Move(moveVector);
-        lookAngle = AddVectorToAngles(lookVector, lookAngle);
         Look(lookAngle);
     }
 
@@ -64,22 +68,21 @@ public class FPSCharacterController: MonoBehaviour
     #region Movement
     public void Move(Vector2 direction)
     {
-        direction = StandardizeVector(direction, speed * speedMultiplier);
         transform.Translate(direction.x, 0, direction.y);
     }
     public void Look(Vector2 angle)
     {
-        head.transform.localRotation = Quaternion.Euler(-angle.y, transform.localRotation.y, transform.localRotation.z); //y inverted as it seems that up is -x
-        transform.localRotation = Quaternion.Euler(transform.localRotation.x, angle.x, transform.localRotation.z);  //un-touched angles are set to current angles to allow for outside forces to effect these things (without snapping abck to 0)
-
+        head.transform.localRotation = Quaternion.Euler(-angle.y, 0, 0); //y inverted as it seems that up is -x
+        transform.localRotation = Quaternion.Euler(0, angle.x, 0);  //un-touched angles are set to current angles to allow for outside forces to effect these things (without snapping abck to 0)
     }
+
     public void Jump()
     {
         rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         //for now we will be implementing force, however it's usually unpredictable, so I'd like to have a look into this later
     }
-    public void ToStance(Stance stance)
-    {
+ 
+    public void ToStance(Stance stance){
         float heightAndSpeedMultiplier = 0f;
         switch (stance)
         {
@@ -100,37 +103,15 @@ public class FPSCharacterController: MonoBehaviour
 
         currentStance = stance;
     }
-    public void ChangeStance(Stance stance)//TODO: A way to allow for individual Stance toggles (e.i. Crouch > Hold and Prone > Toggle)
-    {
-        if(currentStance == stance) {
-            ToStance(Stance.Stand);
-            Debug.Log("I should be standing now");
-        } else {
-            ToStance(stance);
-            Debug.Log("I should be crouching now");
-        }
-    }
+
     #endregion
     //Utilities (to be put into seperate utilities class)
-    Vector2 AddVectorToAngles(Vector2 vector, Vector2 angles)
+    private Vector2 AddVectorToAngles(Vector2 vector, Vector2 angles)
     {
-        vector = StandardizeVector(vector, sensitivity);
-
-        //add vector to total angle
-        angles += vector;
 
         //check constraints
-        angles.y = Mathf.Clamp(angles.y, minLookAngle, maxLookAngle);
+        
 
         return angles;
-    }
-    /// <summary>
-    /// Passes given value through Time.deltaTime, and an optional multiplier 
-    /// </summary>
-    /// <param name="value"></param>
-    /// <param name="multiplier">If not set, default to 1</param>
-    Vector2 StandardizeVector(Vector2 value, float multiplier = 1)
-    {
-        return value * Time.deltaTime * multiplier;
     }
 }

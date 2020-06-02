@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 631f1140ee2e92e4da6986750c1fdb20,
     type: 3}
-  m_NotificationBehavior: 1
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -129,6 +129,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8f6efccf-7204-4b10-a069-4d6e7b35d01e
     m_ActionName: Player/Melee
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8e02380e-9d99-4c98-8be6-45cc8b54a723
+    m_ActionName: Player/Change Mode[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dd100e8c-bfb5-4e18-9b1e-75a94bbace41
+    m_ActionName: General/Open Menu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -160,16 +168,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea76454db238ffc4db3350fb6a518f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 0}
-  rb: {fileID: 0}
-  gc: {fileID: 0}
+  head: {fileID: 8551715616552070212}
+  rb: {fileID: 2687854554416049481}
+  gc: {fileID: 1993545315}
   lookAngle: {x: 0, y: 0}
+  mouseLookAngle: {x: 0, y: 0}
   currentStance: 0
-  speed: 0
-  jumpHeight: 0
-  sensitivity: 0
-  maxLookAngle: -90
-  minLookAngle: 90
+  speed: 5
+  jumpHeight: 3
+  sensitivity: 4.2
+  maxLookAngle: 90
+  minLookAngle: -90
   onHand: {fileID: 0}
 --- !u!114 &1993545315
 MonoBehaviour:
@@ -192,10 +201,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6311036196878831809}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hand
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -207,7 +216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2385674289432870631}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.839, y: -0.94499993, z: 0.44000006}
+  m_LocalPosition: {x: 0.43, y: -0.74, z: 0.87}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 86444678862015162}
@@ -224,10 +233,11 @@ GameObject:
   - component: {fileID: 8551715616552070212}
   - component: {fileID: 6042160125660579979}
   - component: {fileID: 491476013892420422}
+  - component: {fileID: 137276108}
   m_Layer: 0
-  m_Name: Head Camera
+  m_Name: Camera
   m_TagString: MainCamera
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -239,7 +249,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4064060051990624829}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.75, z: -0.25}
+  m_LocalPosition: {x: 0, y: 1.7499999, z: 0.14999998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 86444678862015162}
@@ -269,15 +279,15 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
-  field of view: 90
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -297,6 +307,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4064060051990624829}
   m_Enabled: 1
+--- !u!114 &137276108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4064060051990624829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a83d96d0504a243be36ba822f67117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &8049747902782470180
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 86444678862015162}
+  - component: {fileID: 7184124548876464241}
   m_Layer: 0
   m_Name: Weapon Camera
   m_TagString: Untagged
@@ -320,7 +344,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8049747902782470180}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -328,3 +352,46 @@ Transform:
   m_Father: {fileID: 8551715616552070212}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &7184124548876464241
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8049747902782470180}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 256
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022

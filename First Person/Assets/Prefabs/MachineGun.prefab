@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 126366793}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,8 +41,7 @@ GameObject:
   - component: {fileID: 5211559727935201292}
   - component: {fileID: 3127569353537406101}
   - component: {fileID: 8544288480224639108}
-  - component: {fileID: 8892532693185803978}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,20 +111,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8892532693185803978
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2822958057039603495}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &4034169843583143989
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7141487377367776814}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BulletPoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -167,8 +152,7 @@ GameObject:
   - component: {fileID: 3407125761158882426}
   - component: {fileID: 8752605500691842987}
   - component: {fileID: 3795127735491110026}
-  - component: {fileID: 2494568798759343548}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,19 +222,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2494568798759343548
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4348202121425958870}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4625746215934903101
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +233,7 @@ GameObject:
   - component: {fileID: 563061787720997763}
   - component: {fileID: 684332951172741391}
   - component: {fileID: -885620462084149351}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MachineGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 4625746215934903101}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.839, y: 1.985, z: -1.6759}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3407125761158882426}
   - {fileID: 2750112350732161744}
@@ -320,12 +291,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMode: 0
   FPSCam: {fileID: 0}
-  rateOfFire: 0.5
+  rateOfFire: 12
   damage: 0
-  reloadLength: 0
+  burstSize: 3
+  reloadSpeed: 0
   magSize: 0
   ammoPoolLimit: 0
-  hipAccuracy: 0
+  recoil: 2
+  recoilControl: 20
+  hipAccuracy: 1.5
   aimAccuracy: 0
   bullet: {fileID: 2550784476281219091, guid: 120cd6873480de94396fdac515b49dfc, type: 3}
 --- !u!1 &4648363977839718373
@@ -339,8 +313,7 @@ GameObject:
   - component: {fileID: 3486462144542366354}
   - component: {fileID: 7127126718853450946}
   - component: {fileID: 8719951820844574595}
-  - component: {fileID: 3757859489891094929}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,20 +383,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3757859489891094929
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4648363977839718373}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &5140086248533689603
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,8 +394,7 @@ GameObject:
   - component: {fileID: 1267039703215070331}
   - component: {fileID: 5711406457408776607}
   - component: {fileID: 2303664361942570376}
-  - component: {fileID: 9161809550237741908}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,20 +464,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &9161809550237741908
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5140086248533689603}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &6028498548372346706
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,8 +475,7 @@ GameObject:
   - component: {fileID: 4326671047825727911}
   - component: {fileID: 7931756512808588177}
   - component: {fileID: 5320987988778348902}
-  - component: {fileID: 4121793367738652118}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -602,20 +545,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4121793367738652118
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6028498548372346706}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &6994639012750000579
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,7 +554,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2750112350732161744}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrels
   m_TagString: Untagged
   m_Icon: {fileID: 0}

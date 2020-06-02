@@ -27,10 +27,9 @@ public class FPSCamera : MonoBehaviour
 
     private void Update(){
         CastRay(out hit);
-        player.OnHand.RayDirection = ray.direction;
     }
 
-    
+     
     private void CastRay(out RaycastHit hit) {
         ray = cam.ViewportPointToRay(centerPoint);
         if(Physics.Raycast(ray, out hit)) {
@@ -54,5 +53,9 @@ public class FPSCamera : MonoBehaviour
         Vector2 kickVector = Vector2.up;
         kickVector.x = Random.Range(-hozDirection, hozDirection)/100;
         player.lookAngle += kickVector * magnitude;
+    }
+
+    private void ResetView(float speed) {
+        cam.transform.localRotation = Quaternion.RotateTowards(Quaternion.Euler(player.lookAngle), Quaternion.Euler(player.mouseLookAngle), speed);
     }
 }
