@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class HUDManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //HUD Elements
+    public DynamicCrosshair crosshair;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Awake() {
+        crosshair = GetComponentInChildren<DynamicCrosshair>();
     }
 }

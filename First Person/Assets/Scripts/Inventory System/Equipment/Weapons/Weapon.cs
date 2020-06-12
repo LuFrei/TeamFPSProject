@@ -10,6 +10,7 @@ public class Weapon: UsableItem
 
     [Header("Dependencies")]
     public FPSCamera FPSCam;
+    public WeaponAttributes attributes;
 
     #region attributes
     [Header("Weapon Attributes")]
@@ -26,11 +27,6 @@ public class Weapon: UsableItem
     [SerializeField] private float hipAccuracy; //hip-fire bloom
     [SerializeField] private float aimAccuracy;
     #endregion
-
-
-    //
-    private float hipMaxAccuracy;
-    private float hipMinAccuracy;
 
 
     //Bullet info
@@ -86,7 +82,7 @@ public class Weapon: UsableItem
     
     private IEnumerator CycleShot() {
         while(loadBuffer < 1) {
-            loadBuffer += Time.deltaTime * rateOfFire;
+            loadBuffer += Time.deltaTime * attributes.RateOfFire;
             yield return null; 
         }
         loaded = true;

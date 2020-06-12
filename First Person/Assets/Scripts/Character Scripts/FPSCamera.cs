@@ -7,9 +7,16 @@ using UnityEngine;
 /// </summary>
 public class FPSCamera : MonoBehaviour
 {
+    [SerializeField]private HUDManager hud;
     private Camera cam;
+    private Transform body;
     [SerializeField]private FPSCharacterController player;
 
+    //HUD Display Data
+    public float bloomRadius;
+    private float bloomRestoreVelocity;
+
+    //Center-screen ray Data
     private Ray ray;
     private RaycastHit hit;
     private Vector3 centerPoint;
@@ -55,5 +62,7 @@ public class FPSCamera : MonoBehaviour
         player.LookOffsetVector = kickVector * magnitude;
     }
 
-
+    private void ResetBloom(float speed) {
+        //bloomRadius = Mathf.SmoothDamp(bloomRadius, player.OnHand, ref bloomRestoreVelocity, speed);
+    } //2BMoved to Cam Class
 }

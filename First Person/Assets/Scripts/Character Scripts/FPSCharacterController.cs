@@ -14,6 +14,7 @@ public class FPSCharacterController: MonoBehaviour
     [SerializeField] private Transform head;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GroundCheck gc;
+    
 
     //This might be moved out and to be produced by Input Manager and AI Classes
     private Vector2 moveVector;
@@ -24,7 +25,7 @@ public class FPSCharacterController: MonoBehaviour
     [SerializeField]private float restoreSpeed;
 
 
-    private float baseHeight;
+    private float baseHeight; 
 
     
     public Stance currentStance;
@@ -71,7 +72,8 @@ public class FPSCharacterController: MonoBehaviour
     {
         Move(moveVector);
         Look(lookAngle);
-        ResetView(restoreSpeed);
+
+        ResetView(restoreSpeed); //2BMoved to CAM class
     }
 
 
@@ -87,7 +89,7 @@ public class FPSCharacterController: MonoBehaviour
     }
     private void ResetView(float speed) {
         lookAngle.y = Mathf.SmoothDamp(lookAngle.y, mouseLookAngle.y, ref restoreVelocity, speed);
-    }
+    } //2BMoved to Cam Class
     public void Jump()
     {
         rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);

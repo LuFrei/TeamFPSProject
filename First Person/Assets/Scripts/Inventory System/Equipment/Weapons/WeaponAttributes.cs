@@ -13,7 +13,9 @@ public class WeaponAttributes : MonoBehaviour{
     [SerializeField] private int ammoPoolLimit;
 
     [SerializeField] private float recoil;
+    [SerializeField] private float recoilControl;
     [SerializeField] private float hipAccuracy; //hip-fire bloom
     [SerializeField] private float aimAccuracy; //ADS bloom (NOTE: This should not be set high. Shots should still land REASNOABLY close to aimed location
 
+    public float RateOfFire { get { return rateOfFire / 60f; } } //returns in RPM
 }
