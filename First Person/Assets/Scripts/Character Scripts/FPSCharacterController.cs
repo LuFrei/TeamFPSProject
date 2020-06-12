@@ -42,7 +42,7 @@ public class FPSCharacterController: MonoBehaviour
     [SerializeField] private float minLookAngle = 90;
 
     //info for current item player is holding
-    [SerializeField]private UsableItem onHand;
+    public UsableItem onHand;
      
     public UsableItem OnHand => onHand;
     public Vector2 MoveVector { set => moveVector = value * Time.deltaTime * (speed * speedMultiplier); }

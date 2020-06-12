@@ -7,26 +7,11 @@ public class Weapon: UsableItem
 {
     [Flags] public enum FireMode { Auto = 0, Burst = 1, Single = 2 }
     public FireMode currentMode;
+    public int burstSize = 3; //if applicable
 
     [Header("Dependencies")]
     public FPSCamera FPSCam;
     public WeaponAttributes attributes;
-
-    #region attributes
-    [Header("Weapon Attributes")]
-    [SerializeField] private float rateOfFire; //AutoFire speed
-    [SerializeField] private float damage;
-    [SerializeField] private int burstSize = 3; //if applicable
-
-    [SerializeField] private float reloadSpeed; //in Seconds
-    [SerializeField] private int magSize; //Just in case... "0" will be treated as infinite for both mag and pool size (for possible in-game match editing)
-    [SerializeField] private int ammoPoolLimit;
-
-    [SerializeField] private float recoil;
-    [SerializeField] private float recoilControl;
-    [SerializeField] private float hipAccuracy; //hip-fire bloom
-    [SerializeField] private float aimAccuracy;
-    #endregion
 
 
     //Bullet info
@@ -34,8 +19,8 @@ public class Weapon: UsableItem
 
     //Chamber and Trigger
     private bool loaded = true; //Ready to shoot the next bullet
-    private bool active; //Am I recieving input
-    private bool ready = true; //Ready for the next input?
+    private bool active; //Am I recieving input?
+    private bool ready = true; //Am I ready for the next input?
 
     private float loadBuffer = 1;
 
@@ -44,10 +29,18 @@ public class Weapon: UsableItem
     private int currentReserve;
     private float reloadProgress;
 
-    private int activeSequence = 0;//Keep track of burst cycle, and possible stat tracking
+    private int activeSequence = 0;//Keep track of burst cycle
 
+    //Bloom & Accuracy
+    private float currentBloom;
+    private float baseBloom;
+    private float bloomRestoreVelocity;
 
-    public float RateOfFire { get { return rateOfFire * 60f; } } //returns in RPM
+    public override float Bloom => currentBloom;
+
+    private void Awake() {
+        baseBloom = attributes.hipAccuracy;
+    }
 
     private void Update() {
         //Main
@@ -67,13 +60,16 @@ public class Weapon: UsableItem
                     break;
             }
         }
+
+        RecoverBloom();
     }
 
 
 
     private void Shoot() {
-        Instantiate(bullet, FPSCam.Ray.origin, FPSCam.GenerateRandomDeviation(hipAccuracy));
-        FPSCam.Kick(recoil, recoilControl);
+        Instantiate(bullet, FPSCam.Ray.origin, FPSCam.GenerateRandomDeviation(currentBloom));
+        FPSCam.Kick(attributes.recoil, attributes.recoilControl);
+        AddBloom(attributes.stability);
         Debug.Log("I went bang!");
         loadBuffer = 0;
         loaded = false;
@@ -89,7 +85,19 @@ public class Weapon: UsableItem
         Debug.Log("Done Cycling");
     }
 
+    #region Bloom & Accuracy Functions
+    private void AddBloom(float value) {
+        currentBloom += value;
+    }
+    private void RecoverBloom() {
+        currentBloom = Mathf.SmoothDamp(currentBloom, baseBloom, ref bloomRestoreVelocity, attributes.bloomRecovery);
+    }
+    private void SetBaseBloom(float modifier) {
+        baseBloom *= modifier;
+    }
 
+
+    #endregion
 
     #region FireModes
     private void AutoFire() {
@@ -118,17 +126,15 @@ public class Weapon: UsableItem
     }
     #endregion
 
+    #region UsableItem Methods
     public override void OnPrimaryActionStart() { 
         active = true;
     }
-
-    //Restart parameters
     public override void OnPrimaryActionEnd() {
         active = false;
         if(currentMode == FireMode.Single)
             ready = true;
     }
-
     public override void ChangeMode() {
         if(currentMode < FireMode.Single) {
             currentMode++;
@@ -138,4 +144,5 @@ public class Weapon: UsableItem
 
         Debug.Log(currentMode);
     }
+    #endregion
 }

@@ -3,19 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponAttributes : MonoBehaviour{
-    [Header("Weapon Attributes")]
+    [Header("Damage per Second")]
     [SerializeField] private float rateOfFire; //AutoFire speed
     [SerializeField] private float damage;
-    [SerializeField] private int burstSize = 3; //if applicable
+    
 
+    [Header("Ammunition")]
     [SerializeField] private float reloadSpeed; //in Seconds
-    [SerializeField] private int magSize; //Just in case... "0" will be treated as infinite for both mag and pool size (for possible in-game match editing)
+    [SerializeField] private int magSize; 
     [SerializeField] private int ammoPoolLimit;
 
-    [SerializeField] private float recoil;
-    [SerializeField] private float recoilControl;
-    [SerializeField] private float hipAccuracy; //hip-fire bloom
-    [SerializeField] private float aimAccuracy; //ADS bloom (NOTE: This should not be set high. Shots should still land REASNOABLY close to aimed location
+    [Header("Recoil")]
+    public float recoil;
+    public float recoilControl;
 
-    public float RateOfFire { get { return rateOfFire / 60f; } } //returns in RPM
+
+    [Header("Bloom")]
+    public float bloomRecovery;
+    public float stability; //how much is added to bloom per shot
+    public float hipAccuracy; //hip-fire bloom
+    [SerializeField] private float aimAccuracy; 
+
+    public float RateOfFire /*convert from RPS to RPM*/{
+        get => rateOfFire / 60f;
+        set => rateOfFire = value * 60f;
+    }
 }

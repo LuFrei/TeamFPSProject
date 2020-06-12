@@ -61,8 +61,4 @@ public class FPSCamera : MonoBehaviour
         kickVector.x = Random.Range(-hozDirection, hozDirection) / 100;
         player.LookOffsetVector = kickVector * magnitude;
     }
-
-    private void ResetBloom(float speed) {
-        //bloomRadius = Mathf.SmoothDamp(bloomRadius, player.OnHand, ref bloomRestoreVelocity, speed);
-    } //2BMoved to Cam Class
 }
