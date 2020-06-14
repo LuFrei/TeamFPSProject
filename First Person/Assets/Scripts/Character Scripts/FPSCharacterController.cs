@@ -45,7 +45,7 @@ public class FPSCharacterController: MonoBehaviour
     public UsableItem onHand;
      
     public UsableItem OnHand => onHand;
-    public Vector2 MoveVector { set => moveVector = value * Time.deltaTime * (speed * speedMultiplier); }
+    public Vector2 MoveVector { set => moveVector = value * Time.deltaTime * (speed); }
     public Vector2 LookVector {
         set {
             Vector2 vector = value * Time.deltaTime * sensitivity;
@@ -80,6 +80,7 @@ public class FPSCharacterController: MonoBehaviour
 
     public void Move(Vector2 direction)
     {
+        direction *= speedMultiplier;
         transform.Translate(direction.x, 0, direction.y);
     }
     public void Look(Vector2 angle)
@@ -96,7 +97,7 @@ public class FPSCharacterController: MonoBehaviour
         //for now we will be implementing force, however it's usually unpredictable, so I'd like to have a look into this later
     }
     public void ToStance(Stance stance){
-        float heightAndSpeedMultiplier = 0f;
+        float heightAndSpeedMultiplier = 1f;
         switch (stance)
         {
             case (Stance.Stand):
@@ -113,6 +114,7 @@ public class FPSCharacterController: MonoBehaviour
         head.transform.localPosition = new Vector3(0, baseHeight * heightAndSpeedMultiplier, 0);
 
         speedMultiplier = heightAndSpeedMultiplier;
+        onHand.Bloom = heightAndSpeedMultiplier;
 
         currentStance = stance;
     }

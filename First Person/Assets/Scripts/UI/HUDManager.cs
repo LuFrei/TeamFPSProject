@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HUDManager : MonoBehaviour
+public class HUDManager: MonoBehaviour
 {
+    //Dependencies
+    public FPSCharacterController player;
+
     //HUD Elements
     public DynamicCrosshair crosshair;
-    
-    public FPSCharacterController player;
+
 
     private void Awake() {
         crosshair = GetComponentInChildren<DynamicCrosshair>();
@@ -16,4 +18,9 @@ public class HUDManager : MonoBehaviour
     private void Update() {
         crosshair.UpdateBloom(player.OnHand.Bloom);
     }
+
+    private void ScaleDegreesToScreen(float value) {
+        //float referenceScale = player.;
+    }
 }
+

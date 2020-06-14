@@ -36,12 +36,16 @@ public class Weapon: UsableItem
     private float baseBloom;
     private float bloomRestoreVelocity;
 
-    public override float Bloom => currentBloom;
+    public override float Bloom {
+        get => currentBloom;
+        set => SetBaseBloom(value);
+    }
+     
 
     private void Awake() {
         baseBloom = attributes.hipAccuracy;
     }
-
+    
     private void Update() {
         //Main
         if(active && ready) {
@@ -93,7 +97,7 @@ public class Weapon: UsableItem
         currentBloom = Mathf.SmoothDamp(currentBloom, baseBloom, ref bloomRestoreVelocity, attributes.bloomRecovery);
     }
     private void SetBaseBloom(float modifier) {
-        baseBloom *= modifier;
+        baseBloom = attributes.hipAccuracy * modifier;
     }
 
 

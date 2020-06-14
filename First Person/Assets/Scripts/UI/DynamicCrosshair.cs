@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class DynamicCrosshair : MonoBehaviour
 {
+    //Internal Data
     [SerializeField] private RectTransform crosshair;
-
     [SerializeField] private Sprite[] styles;
     [SerializeField] private Image[] ticks;
 
