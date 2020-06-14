@@ -10,14 +10,9 @@ public class DynamicCrosshair : MonoBehaviour
     [SerializeField] private Sprite[] styles;
     [SerializeField] private Image[] ticks;
 
-    [SerializeField] private float bloomRadius;
-
 
     private void Awake() {
         crosshair = GetComponent<RectTransform>();
-    }
-    private void FixedUpdate() {
-        UpdateBloom(bloomRadius);
     }
 
 

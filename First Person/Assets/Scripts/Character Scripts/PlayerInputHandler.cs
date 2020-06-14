@@ -30,7 +30,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     void OnLook(InputValue value) {
-        player.Camera.LookVector = value.Get<Vector2>();
+        player.Head.LookVector = value.Get<Vector2>();
     }
 
     //stancemodes

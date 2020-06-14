@@ -19,9 +19,9 @@ public class WeaponAttributes : MonoBehaviour{
 
 
     [Header("Bloom")]
-    public float bloomRecovery;
+    public float accuracyRecoveryRate;
     public float stability; //how much is added to bloom per shot
-    public float hipAccuracy; //hip-fire bloom
+    [Range(0, 25)]public float hipAccuracy; //hip-fire bloom
     [SerializeField] private float aimAccuracy;
 
     public float RateOfFire /*convert from RPS to RPM*/{

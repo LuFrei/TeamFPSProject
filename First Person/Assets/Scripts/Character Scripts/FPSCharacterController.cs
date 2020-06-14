@@ -11,10 +11,9 @@ public enum Stance {
 public class FPSCharacterController: MonoBehaviour
 {
     [Header("Dependencies")]
-    [SerializeField] private Transform head;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GroundCheck gc;
-    [SerializeField] private FPSCamera cam;
+    [SerializeField] private FPSCamera head;
     
 
     //This might be moved out and to be produced by Input Manager and AI Classes
@@ -36,15 +35,15 @@ public class FPSCharacterController: MonoBehaviour
      
     public UsableItem OnHand => onHand;
     public Vector2 MoveVector { set => moveVector = value * Time.deltaTime * (speed); }
-    public FPSCamera Camera => cam;
+    public FPSCamera Head => head;
 
     public Stance CurrentStance => currentStance;
 
     private void Awake()
     {
-        cam = GetComponentInChildren<FPSCamera>();
-        head = cam.transform;
-        baseHeight = head.localPosition.y;
+        head = GetComponentInChildren<FPSCamera>();
+        //head = cam.transform;
+        baseHeight = head.transform.localPosition.y;
     }
     private void FixedUpdate()
     {
@@ -80,7 +79,7 @@ public class FPSCharacterController: MonoBehaviour
                 break;
         }
         //apply multipliers
-        head.localPosition = new Vector3(0, baseHeight * heightAndSpeedMultiplier, 0);
+        head.transform.localPosition = new Vector3(0, baseHeight * heightAndSpeedMultiplier, 0);
 
         speedMultiplier = heightAndSpeedMultiplier;
         onHand.Bloom = heightAndSpeedMultiplier;

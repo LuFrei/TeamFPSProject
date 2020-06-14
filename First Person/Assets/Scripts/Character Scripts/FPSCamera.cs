@@ -5,27 +5,20 @@ using UnityEngine;
 /// <summary>
 /// Contains data of where/what the player is looking, as well as several functionalities for shooting weapons.
 /// </summary>
-public class FPSCamera : MonoBehaviour
+public class FPSCamera: MonoBehaviour
 {
     //Dependencies
-    [SerializeField]private HUDManager hud;
     private Camera cam;
-    private Transform body;
+    [SerializeField] private Transform body;
 
     [Header("Camera Control Settings")]
     [SerializeField] private float sensitivity = 5;
-    [SerializeField] private float maxLookAngle = -90;
-    [SerializeField] private float minLookAngle = 90;
+    [SerializeField] private float maxLookAngle = 90;
+    [SerializeField] private float minLookAngle = -90;
 
-    [SerializeField] private Vector2 lookAngle; //Total angle inclusing things like camera kick
-    [SerializeField] private Vector2 mouseLookAngle; //records the angle the camera should be exclusively from mouse input
+    private Vector2 lookAngle; //Total angle inclusing things like camera kick
+    private Vector2 mouseLookAngle; //records the angle the camera should be exclusively from mouse input
 
-    [SerializeField] private float restoreVelocity;
-    [SerializeField] private float restoreSpeed;
-
-    //HUD Display Data
-    public float bloomRadius;
-    private float bloomRestoreVelocity;
 
     //Center-screen ray Data
     private Ray ray;
@@ -52,18 +45,19 @@ public class FPSCamera : MonoBehaviour
             lookAngle += value;
         }
     }
+    public Camera Camera => cam;
+
+
 
     private void Awake()
     {
         centerPoint = new Vector3(0.5f, 0.5f, 0);
         cam = GetComponent<Camera>();
-        body = GetComponentInParent<Transform>();
     }
 
-    private void Update(){
+    private void FixedUpdate(){
         Look(lookAngle);
         CastRay(out hit);
-        ResetView(restoreSpeed);
     }
 
 
@@ -81,8 +75,8 @@ public class FPSCamera : MonoBehaviour
         }
     }
 
-    private void ResetView(float speed) {
-        lookAngle.y = Mathf.SmoothDamp(lookAngle.y, mouseLookAngle.y, ref restoreVelocity, speed);
+    public void ResetView(float rate) {
+        lookAngle.y = Mathf.MoveTowards(lookAngle.y, mouseLookAngle.y, rate);
     }
 
     public Quaternion GenerateRandomDeviation(float maxMagnitude) {

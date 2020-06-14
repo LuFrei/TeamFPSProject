@@ -18,9 +18,9 @@ public class Weapon: UsableItem
     [SerializeField] private GameObject bullet;
 
     //Chamber and Trigger
-    private bool loaded = true; //Ready to shoot the next bullet
-    private bool active; //Am I recieving input?
-    private bool ready = true; //Am I ready for the next input?
+    private bool isLoaded = true; //Ready to shoot the next bullet
+    private bool isReceivingInput; //Am I recieving input?
+    private bool isBusy = false; //Am I ready for the next input?
 
     private float loadBuffer = 1;
 
@@ -32,9 +32,8 @@ public class Weapon: UsableItem
     private int activeSequence = 0;//Keep track of burst cycle
 
     //Bloom & Accuracy
-    private float currentBloom;
-    private float baseBloom;
-    private float bloomRestoreVelocity;
+    [SerializeField]private float currentBloom;
+    [SerializeField]private float baseBloom;
 
     public override float Bloom {
         get => currentBloom;
@@ -45,14 +44,86 @@ public class Weapon: UsableItem
     private void Awake() {
         baseBloom = attributes.hipAccuracy;
     }
-    
     private void Update() {
-        //Main
-        if(active && ready) {
+        if(!isBusy) {
+            RecoverBloom();
+            FPSCam.ResetView(attributes.accuracyRecoveryRate);
+        }
+    }
+
+
+
+    private void Shoot() {
+        Instantiate(bullet, FPSCam.Ray.origin, FPSCam.GenerateRandomDeviation(currentBloom));
+        FPSCam.Kick(attributes.recoil, attributes.recoilControl);
+        AddBloom(attributes.stability);
+        Debug.Log("I went bang!");
+        loadBuffer = 0;
+        isLoaded = false;
+        StartCoroutine(CycleShot());
+    } 
+    
+    private IEnumerator CycleShot() {
+        while(loadBuffer < 1) {
+            loadBuffer += Time.deltaTime * attributes.RateOfFire;
+            yield return null; 
+        }
+        isLoaded = true;
+        Debug.Log("Done Cycling");
+    }
+
+    #region Bloom & Accuracy Functions
+    private void AddBloom(float value) {
+        currentBloom += value;
+    }
+    private void RecoverBloom() {
+        currentBloom = Mathf.MoveTowards(currentBloom, baseBloom, attributes.accuracyRecoveryRate);
+    }
+    private void SetBaseBloom(float modifier) {
+        baseBloom = attributes.hipAccuracy * modifier;
+    }
+
+
+    #endregion
+
+    #region FireModes
+    private IEnumerator AutoFire() {
+        isBusy = true;
+        while(isReceivingInput) {
+            if(isLoaded) {
+                Shoot();
+            }
+            yield return null;
+        }
+        isBusy = false;
+    }
+    private void SingleFire() {
+        if(isLoaded) {
+            Shoot();
+        }
+    }
+    private IEnumerator BurstFire() {
+        isBusy = true;
+        while(activeSequence < burstSize){
+            if(isLoaded) {
+                Shoot();
+                activeSequence++;
+            }
+            yield return null;
+        }
+        isBusy = false;
+        activeSequence = 0;
+    }
+    #endregion
+
+    #region UsableItem Methods
+    public override void OnPrimaryActionStart() { 
+        isReceivingInput = true;
+        if(!isBusy) {
             switch(currentMode) {
                 case FireMode.Auto:
                     Debug.Log("Shooting Auto");
-                    AutoFire();
+                    StartCoroutine(AutoFire());
                     break;
                 case FireMode.Burst:
                     Debug.Log("Shooting Burst");
@@ -64,80 +135,9 @@ public class Weapon: UsableItem
                     break;
             }
         }
-
-        RecoverBloom();
-    }
-
-
-
-    private void Shoot() {
-        Instantiate(bullet, FPSCam.Ray.origin, FPSCam.GenerateRandomDeviation(currentBloom));
-        FPSCam.Kick(attributes.recoil, attributes.recoilControl);
-        AddBloom(attributes.stability);
-        Debug.Log("I went bang!");
-        loadBuffer = 0;
-        loaded = false;
-        StartCoroutine(CycleShot());
-    } 
-    
-    private IEnumerator CycleShot() {
-        while(loadBuffer < 1) {
-            loadBuffer += Time.deltaTime * attributes.RateOfFire;
-            yield return null; 
-        }
-        loaded = true;
-        Debug.Log("Done Cycling");
-    }
-
-    #region Bloom & Accuracy Functions
-    private void AddBloom(float value) {
-        currentBloom += value;
-    }
-    private void RecoverBloom() {
-        currentBloom = Mathf.SmoothDamp(currentBloom, baseBloom, ref bloomRestoreVelocity, attributes.bloomRecovery);
-    }
-    private void SetBaseBloom(float modifier) {
-        baseBloom = attributes.hipAccuracy * modifier;
-    }
-
-
-    #endregion
-
-    #region FireModes
-    private void AutoFire() {
-        if(loaded) {
-            Shoot();
-        }
-    }
-    private void SingleFire() {
-        ready = false;
-        if(loaded) {
-            Shoot();
-        }
-    }
-    private IEnumerator BurstFire() {
-        active = false;
-        ready = false;
-        while(activeSequence < burstSize){
-            if(loaded) {
-                Shoot();
-                activeSequence++;
-            }
-            yield return null;
-        }
-        ready = true;
-        activeSequence = 0;
-    }
-    #endregion
-
-    #region UsableItem Methods
-    public override void OnPrimaryActionStart() { 
-        active = true;
     }
     public override void OnPrimaryActionEnd() {
-        active = false;
-        if(currentMode == FireMode.Single)
-            ready = true;
+        isReceivingInput = false;
     }
     public override void ChangeMode() {
         if(currentMode < FireMode.Single) {
