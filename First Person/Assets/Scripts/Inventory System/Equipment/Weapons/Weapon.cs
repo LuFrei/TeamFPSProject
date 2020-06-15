@@ -12,9 +12,6 @@ public class Weapon: UsableItem
     [Header("Dependencies")]
     public FPSCamera FPSCam;
     public WeaponAttributes attributes;
-
-
-    //Bullet info
     [SerializeField] private GameObject bullet;
 
     //Chamber and Trigger
@@ -32,8 +29,13 @@ public class Weapon: UsableItem
     private int activeSequence = 0;//Keep track of burst cycle
 
     //Bloom & Accuracy
-    [SerializeField]private float currentBloom;
-    [SerializeField]private float baseBloom;
+    private float currentBloom;
+    private float baseBloom;
+    private float recoverVelocity;
+
+    //Aiming
+    private float aimingSpeed;
+    private float walkingSpeed;
 
     public override float Bloom {
         get => currentBloom;
@@ -42,21 +44,21 @@ public class Weapon: UsableItem
      
 
     private void Awake() {
-        baseBloom = attributes.hipAccuracy;
+        baseBloom = attributes.HipAccuracy;
     }
     private void Update() {
         if(!isBusy) {
-            RecoverBloom();
-            FPSCam.ResetView(attributes.accuracyRecoveryRate);
+            FPSCam.ResetView(attributes.RecoilRecovery);
         }
+        RecoverBloom();
     }
 
 
 
-    private void Shoot() {
+    private void Shoot(float kickMagnitude) {
         Instantiate(bullet, FPSCam.Ray.origin, FPSCam.GenerateRandomDeviation(currentBloom));
-        FPSCam.Kick(attributes.recoil, attributes.recoilControl);
-        AddBloom(attributes.stability);
+        FPSCam.Kick(kickMagnitude, attributes.RecoilControl);
+        AddBloom(attributes.Stability);
         Debug.Log("I went bang!");
         loadBuffer = 0;
         isLoaded = false;
@@ -77,10 +79,10 @@ public class Weapon: UsableItem
         currentBloom += value;
     }
     private void RecoverBloom() {
-        currentBloom = Mathf.MoveTowards(currentBloom, baseBloom, attributes.accuracyRecoveryRate);
+        currentBloom = Mathf.SmoothDamp(currentBloom, baseBloom, ref recoverVelocity, attributes.bloomRecovery);
     }
     private void SetBaseBloom(float modifier) {
-        baseBloom = attributes.hipAccuracy * modifier;
+        baseBloom = attributes.HipAccuracy * modifier;
     }
 
 
@@ -89,9 +91,11 @@ public class Weapon: UsableItem
     #region FireModes
     private IEnumerator AutoFire() {
         isBusy = true;
+        float recoilDamper= attributes.Recoil;
         while(isReceivingInput) {
             if(isLoaded) {
-                Shoot();
+                Shoot(recoilDamper);
+                recoilDamper = Mathf.Lerp(recoilDamper, 0, 0.1f);
             }
             yield return null;
         }
@@ -99,14 +103,14 @@ public class Weapon: UsableItem
     }
     private void SingleFire() {
         if(isLoaded) {
-            Shoot();
+            Shoot(attributes.Recoil);
         }
     }
     private IEnumerator BurstFire() {
         isBusy = true;
         while(activeSequence < burstSize){
             if(isLoaded) {
-                Shoot();
+                Shoot(attributes.Recoil);
                 activeSequence++;
             }
             yield return null;

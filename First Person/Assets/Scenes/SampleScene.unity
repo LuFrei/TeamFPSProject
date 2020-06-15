@@ -922,12 +922,13 @@ MonoBehaviour:
   reloadSpeed: 0
   magSize: 0
   ammoPoolLimit: 0
-  recoil: 1
-  recoilControl: 20
-  bloomRecovery: 0.4
-  stability: 1
-  hipAccuracy: 4.8
+  recoil: 2
+  recoilControl: 35.5
+  recoilRecovery: 0.554
+  hipAccuracy: 5.7
   aimAccuracy: 0
+  stability: 1.21
+  bloomRecovery: 0.1
 --- !u!1 &1079179909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,7 +1714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 137276108, guid: 0e590f624efa10d42aa6d1f7736886a5, type: 3}
       propertyPath: kickRecoveryTime
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 485424257355365159, guid: 0e590f624efa10d42aa6d1f7736886a5,
         type: 3}

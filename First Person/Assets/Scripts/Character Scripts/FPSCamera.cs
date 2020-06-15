@@ -88,9 +88,9 @@ public class FPSCamera: MonoBehaviour
         return newDirection;
     }
 
-    public void Kick(float magnitude, float hozDirection) {
-        Vector2 kickVector = Vector2.up;
-        kickVector.x = Random.Range(-hozDirection, hozDirection) / 100;
-        lookAngle += kickVector * magnitude;
+    public void Kick(float magnitude, float hozOffset) {
+        Vector2 kickVector = Vector2.up * magnitude;
+        kickVector.x = Random.Range(-hozOffset, hozOffset);
+        lookAngle += kickVector;
     }
 }
