@@ -30,21 +30,24 @@ public class Weapon: UsableItem
 
     //Bloom & Accuracy
     private float currentBloom;
-    private float baseBloom;
+    private float bloom;
+    private float baseBloom;//What base attribute "bloom" is using
     private float recoverVelocity;
 
     //Aiming
     private float aimingSpeed;
     private float walkingSpeed;
+    private float aimZoom = 1.2f;
+
 
     public override float Bloom {
         get => currentBloom;
-        set => SetBaseBloom(value);
+        set => SetBloom(value);
     }
-     
 
     private void Awake() {
         baseBloom = attributes.HipAccuracy;
+        bloom = baseBloom;
     }
     private void Update() {
         if(!isBusy) {
@@ -64,7 +67,6 @@ public class Weapon: UsableItem
         isLoaded = false;
         StartCoroutine(CycleShot());
     } 
-    
     private IEnumerator CycleShot() {
         while(loadBuffer < 1) {
             loadBuffer += Time.deltaTime * attributes.RateOfFire;
@@ -79,13 +81,27 @@ public class Weapon: UsableItem
         currentBloom += value;
     }
     private void RecoverBloom() {
-        currentBloom = Mathf.SmoothDamp(currentBloom, baseBloom, ref recoverVelocity, attributes.bloomRecovery);
+        currentBloom = Mathf.SmoothDamp(currentBloom, bloom, ref recoverVelocity, attributes.bloomRecovery);
     }
-    private void SetBaseBloom(float modifier) {
-        baseBloom = attributes.HipAccuracy * modifier;
+    private void SetBloom(float modifier) {
+        bloom = baseBloom * modifier;
     }
 
 
+    #endregion
+
+    #region Aiming Functions
+    void ToAimDownSight(float zoomMultiplier) {
+        FPSCam.Zoom(zoomMultiplier);
+        baseBloom = attributes.AimAccureacy;
+        bloom = baseBloom;
+    }
+
+    void ToHipfire() {
+        FPSCam.Zoom(1);
+        baseBloom = attributes.HipAccuracy;
+        bloom = baseBloom;
+    }
     #endregion
 
     #region FireModes
@@ -142,6 +158,13 @@ public class Weapon: UsableItem
     }
     public override void OnPrimaryActionEnd() {
         isReceivingInput = false;
+    }
+
+    public override void OnSecondaryActionStart() {
+        ToAimDownSight(aimZoom);
+    }
+    public override void OnSecondaryActionEnd() {
+        ToHipfire();
     }
     public override void ChangeMode() {
         if(currentMode < FireMode.Single) {

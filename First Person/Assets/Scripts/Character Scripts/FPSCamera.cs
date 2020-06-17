@@ -15,15 +15,16 @@ public class FPSCamera: MonoBehaviour
     [SerializeField] private float sensitivity = 5;
     [SerializeField] private float maxLookAngle = 90;
     [SerializeField] private float minLookAngle = -90;
+    [SerializeField] private float baseFieldOfView;
 
     private Vector2 lookAngle; //Total angle inclusing things like camera kick
     private Vector2 mouseLookAngle; //records the angle the camera should be exclusively from mouse input
 
 
-    //Center-screen ray Data
+    //Center-screen ray Data 
     private Ray ray;
     private RaycastHit hit;
-    private Vector3 centerPoint;
+    private Vector3 centerPoint = new Vector3(0.5f, 0.5f, 0);
 
     public Ray Ray => ray;
     public RaycastHit Hit => hit;
@@ -51,10 +52,11 @@ public class FPSCamera: MonoBehaviour
 
     private void Awake()
     {
-        centerPoint = new Vector3(0.5f, 0.5f, 0);
         cam = GetComponent<Camera>();
     }
-
+    private void Start() {
+        baseFieldOfView = cam.fieldOfView;
+    }
     private void FixedUpdate(){
         Look(lookAngle);
         CastRay(out hit);
@@ -92,5 +94,9 @@ public class FPSCamera: MonoBehaviour
         Vector2 kickVector = Vector2.up * magnitude;
         kickVector.x = Random.Range(-hozOffset, hozOffset);
         lookAngle += kickVector;
+    }
+
+    public void Zoom(float multiplier) {
+        cam.fieldOfView = baseFieldOfView / multiplier;
     }
 }

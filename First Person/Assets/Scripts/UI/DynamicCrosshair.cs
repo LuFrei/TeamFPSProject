@@ -26,5 +26,10 @@ public class DynamicCrosshair : MonoBehaviour
         }
     }
 
+    public void DisableCrosshairs(bool on) {
+    }
 
+    public void DisableRecticle(bool on) {
+
+    }
 }

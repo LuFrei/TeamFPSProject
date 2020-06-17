@@ -10,7 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField]private GameManager gm;
     private InputManager input;
 
-     
+    public bool isAiming = false;
 
     // Start is called before the first frame update
     void Awake() {
@@ -19,7 +19,7 @@ public class PlayerInputHandler : MonoBehaviour
         //input.Player.Look.performed += ctx => player.LookVector = ctx.ReadValue<Vector2>();
         input.Player.Jump.performed += ctx => player.Jump();
         input.Player.Shoot.started += ctx => player.OnHand.OnPrimaryActionStart();
-        input.Player.Shoot.canceled += ctx => player.OnHand.OnPrimaryActionEnd(); 
+        input.Player.Shoot.canceled += ctx => player.OnHand.OnPrimaryActionEnd();
         input.Player.ChangeMode.performed += ctx => player.OnHand.ChangeMode();
 
         input.General.OpenMenu.performed += ctx => gm.ChangeGameState();
@@ -36,7 +36,6 @@ public class PlayerInputHandler : MonoBehaviour
     //stancemodes
     void OnCrouch(InputValue value) {
         //"Hold" logic
-        Debug.Log(value.isPressed);
         if(value.isPressed) {
             player.ToStance(Stance.Crouch);
         } else if(!value.isPressed && player.currentStance == Stance.Crouch) {
@@ -46,7 +45,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     void OnProne(InputValue value) {
         //"Toggle" logic
-        Debug.Log("OnProne running");
         if(value.isPressed && player.currentStance == Stance.Prone) { 
             player.ToStance(Stance.Stand);
         } else if(value.isPressed) {
@@ -54,6 +52,17 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    void OnAim(InputValue value) {
+        //"Toggle" logic
+        if(value.isPressed && !isAiming) {
+            isAiming = true;
+            player.OnHand.OnSecondaryActionStart();
+        } else if(value.isPressed) {
+            isAiming = false;
+            player.OnHand.OnSecondaryActionEnd();
+        }
+
+    }
     
 
     #region Enable/Disable

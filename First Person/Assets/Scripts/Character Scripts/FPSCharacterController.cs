@@ -66,23 +66,27 @@ public class FPSCharacterController: MonoBehaviour
     }
     public void ToStance(Stance stance){
         float heightAndSpeedMultiplier = 1f;
+        float bloomMultiplier = 1f;
         switch (stance)
         {
             case (Stance.Stand):
                 heightAndSpeedMultiplier = 1f;
+                bloomMultiplier = 1f;
                 break;
             case (Stance.Crouch):
                 heightAndSpeedMultiplier = 0.5f;
+                bloomMultiplier = 0.75f;
                 break; 
             case (Stance.Prone):
                 heightAndSpeedMultiplier = 0.2f;
+                bloomMultiplier = 0.5f;
                 break;
         }
         //apply multipliers
         head.transform.localPosition = new Vector3(0, baseHeight * heightAndSpeedMultiplier, 0);
 
         speedMultiplier = heightAndSpeedMultiplier;
-        onHand.Bloom = heightAndSpeedMultiplier;
+        onHand.Bloom = bloomMultiplier;
 
         currentStance = stance;
     }
