@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponAttributes : MonoBehaviour{
+[CreateAssetMenu(menuName = "TeamFPS/Weapons/Attributes", order = 1)]
+public class WeaponAttributes : ScriptableObject{
     [Header("Damage per Second")]
     [SerializeField] private float rateOfFire; //AutoFire speed
     [SerializeField] private float damage;
@@ -10,8 +11,8 @@ public class WeaponAttributes : MonoBehaviour{
 
     [Header("Ammunition")]
     [SerializeField] private float reloadSpeed; //in Seconds
-    [SerializeField] private int magSize; 
-    [SerializeField] private int ammoPoolLimit;
+    [SerializeField] [Range(1, 500)]private int magSize; 
+    [SerializeField] [Range(0, 10)]private int ammoPoolLimit;
 
     [Header("Recoil")]
     [SerializeField][Range(0, 5)]private float recoil;
@@ -30,12 +31,14 @@ public class WeaponAttributes : MonoBehaviour{
         set => rateOfFire = value * 60f;
     }
     public float Damage => damage;
-
+    public float ReloadSpeed => reloadSpeed;
+    public int MagSize => magSize;
+    public int AmmoReserveLimit => ammoPoolLimit;
     public float Recoil => recoil;
     public float RecoilControl => recoilControl;
     public float RecoilRecovery => recoilRecovery;
     public float HipAccuracy => hipAccuracy;
-    public float AimAccureacy => aimAccuracy;
+    public float AimAccuracy => aimAccuracy;
     public float Stability => stability;
     public float BloomRecoveryTime => bloomRecovery;
 }

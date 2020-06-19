@@ -13,6 +13,9 @@ public class Weapon: UsableItem
     public FPSCamera FPSCam;
     public WeaponAttributes attributes;
     [SerializeField] private GameObject bullet;
+    
+    private AccuracySpread accuracy = new AccuracySpread();
+    private Ammo ammunition;
 
     //Chamber and Trigger
     private bool isLoaded = true; //Ready to shoot the next bullet
@@ -21,47 +24,36 @@ public class Weapon: UsableItem
 
     private float loadBuffer = 1;
 
-    //Magazine and Ammo
-    private int currentMagValue;
-    private int currentReserve;
-    private float reloadProgress;
-
     private int activeSequence = 0;//Keep track of burst cycle
-
-    //Bloom & Accuracy
-    private float currentBloom;
-    private float bloom;
-    private float baseBloom;//What base attribute "bloom" is using
-    private float recoverVelocity;
 
     //Aiming
     private float aimingSpeed;
     private float walkingSpeed;
     private float aimZoom = 1.2f;
 
+    public override AccuracySpread Accuracy => accuracy;
+    public override Ammo Ammo => ammunition;
 
-    public override float Bloom {
-        get => currentBloom;
-        set => SetBloom(value);
-    }
 
     private void Awake() {
-        baseBloom = attributes.HipAccuracy;
-        bloom = baseBloom;
+        accuracy.SetNewBloomSource(attributes.HipAccuracy);
+        ammunition = new Ammo(attributes.MagSize);    
     }
+
     private void Update() {
         if(!isBusy) {
             FPSCam.ResetView(attributes.RecoilRecovery);
         }
-        RecoverBloom();
+        accuracy.RecoverBloom(attributes.BloomRecoveryTime);
     }
 
 
 
     private void Shoot(float kickMagnitude) {
-        Instantiate(bullet, FPSCam.Ray.origin, FPSCam.GenerateRandomDeviation(currentBloom));
+        Instantiate(bullet, FPSCam.Ray.origin, FPSCam.GenerateRandomDeviation(accuracy.Bloom));
         FPSCam.Kick(kickMagnitude, attributes.RecoilControl);
-        AddBloom(attributes.Stability);
+        accuracy.AddBloom(attributes.Stability);
+        ammunition.ExpendBullet();
         Debug.Log("I went bang!");
         loadBuffer = 0;
         isLoaded = false;
@@ -76,31 +68,17 @@ public class Weapon: UsableItem
         Debug.Log("Done Cycling");
     }
 
-    #region Bloom & Accuracy Functions
-    private void AddBloom(float value) {
-        currentBloom += value;
-    }
-    private void RecoverBloom() {
-        currentBloom = Mathf.SmoothDamp(currentBloom, bloom, ref recoverVelocity, attributes.bloomRecovery);
-    }
-    private void SetBloom(float modifier) {
-        bloom = baseBloom * modifier;
-    }
 
-
-    #endregion
 
     #region Aiming Functions
     void ToAimDownSight(float zoomMultiplier) {
         FPSCam.Zoom(zoomMultiplier);
-        baseBloom = attributes.AimAccureacy;
-        bloom = baseBloom;
+        accuracy.SetNewBloomSource(attributes.AimAccuracy);
     }
 
     void ToHipfire() {
         FPSCam.Zoom(1);
-        baseBloom = attributes.HipAccuracy;
-        bloom = baseBloom;
+        accuracy.SetNewBloomSource(attributes.HipAccuracy);
     }
     #endregion
 

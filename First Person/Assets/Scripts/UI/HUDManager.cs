@@ -10,16 +10,19 @@ public class HUDManager: MonoBehaviour
 
     //HUD Elements
     public DynamicCrosshair crosshair;
+    public AmmoCounter ammo;
 
 
     private void Awake() {
         crosshair = GetComponentInChildren<DynamicCrosshair>();
+        ammo = GetComponentInChildren<AmmoCounter>();
     }
 
     private void Update() {
-        crosshair.UpdateBloom(ScaleDegreesToScreen(player.OnHand.Bloom*2));
+        crosshair.UpdateBloom(ScaleDegreesToScreen(player.OnHand.Accuracy.Bloom * 2));
+        ammo.SetCounterValue(player.OnHand.Ammo.MagAmmo, player.OnHand.Ammo.ReserveAmmo);
     }
-
+    
     private float ScaleDegreesToScreen(float value) {
         float degreesPerPixel = 1080/player.Head.Camera.fieldOfView;
         return degreesPerPixel * value;

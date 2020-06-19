@@ -28,10 +28,10 @@ public class FPSCharacterController: MonoBehaviour
     [SerializeField] private float speed = 5;
     private float speedMultiplier = 1;
     [SerializeField] private float jumpHeight = 3;
-
+    
 
     //info for current item player is holding
-    public UsableItem onHand;
+    [SerializeField]private UsableItem onHand;
      
     public UsableItem OnHand => onHand;
     public Vector2 MoveVector { set => moveVector = value * Time.deltaTime * (speed); }
@@ -86,7 +86,7 @@ public class FPSCharacterController: MonoBehaviour
         head.transform.localPosition = new Vector3(0, baseHeight * heightAndSpeedMultiplier, 0);
 
         speedMultiplier = heightAndSpeedMultiplier;
-        onHand.Bloom = bloomMultiplier;
+        onHand.Accuracy.SetBloomModifier(bloomMultiplier);
 
         currentStance = stance;
     }

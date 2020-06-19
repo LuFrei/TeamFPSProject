@@ -65,7 +65,7 @@ public class FPSCamera: MonoBehaviour
 
     public void Look(Vector2 angle) {
         transform.localRotation = Quaternion.Euler(-angle.y, 0, 0); //y inverted as it seems that up is -x
-        body.transform.localRotation = Quaternion.Euler(0, angle.x, 0);  //un-touched angles are set to current angles to allow for outside forces to effect these things (without snapping abck to 0)
+        body.localRotation = Quaternion.Euler(0, angle.x, 0);  //un-touched angles are set to current angles to allow for outside forces to effect these things (without snapping abck to 0)
     }
 
     private void CastRay(out RaycastHit hit) {
