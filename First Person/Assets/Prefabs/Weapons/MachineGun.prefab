@@ -290,17 +290,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMode: 0
-  FPSCam: {fileID: 0}
-  rateOfFire: 12
-  damage: 0
   burstSize: 3
-  reloadSpeed: 0
-  magSize: 0
-  ammoPoolLimit: 0
-  recoil: 2
-  recoilControl: 20
-  hipAccuracy: 1.5
-  aimAccuracy: 0
+  FPSCam: {fileID: 0}
+  attributes: {fileID: 11400000, guid: 828c86d5e657ac242aa929e36ddbe1bd, type: 2}
   bullet: {fileID: 2550784476281219091, guid: 120cd6873480de94396fdac515b49dfc, type: 3}
 --- !u!1 &4648363977839718373
 GameObject:

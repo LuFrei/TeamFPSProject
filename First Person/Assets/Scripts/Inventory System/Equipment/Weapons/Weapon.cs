@@ -22,9 +22,6 @@ public class Weapon: UsableItem
     private bool isReceivingInput; //Am I recieving input?
     private bool isBusy = false; //Am I ready for the next input?
 
-    private float loadBuffer = 1;
-
-    private int activeSequence = 0;//Keep track of burst cycle
 
     //Aiming
     private float aimingSpeed;
@@ -37,7 +34,7 @@ public class Weapon: UsableItem
 
     private void Awake() {
         accuracy.SetNewBloomSource(attributes.HipAccuracy);
-        ammunition = new Ammo(attributes.MagSize);    
+        ammunition = new Ammo(attributes.MagSize, attributes.AmmoReserveLimit);    
     }
 
     private void Update() {
@@ -53,19 +50,20 @@ public class Weapon: UsableItem
         Instantiate(bullet, FPSCam.Ray.origin, FPSCam.GenerateRandomDeviation(accuracy.Bloom));
         FPSCam.Kick(kickMagnitude, attributes.RecoilControl);
         accuracy.AddBloom(attributes.Stability);
-        ammunition.ExpendBullet();
-        Debug.Log("I went bang!");
-        loadBuffer = 0;
         isLoaded = false;
-        StartCoroutine(CycleShot());
+        if(ammunition.ExpendBullet()) {
+            StartCoroutine(CycleShot());
+        } else {
+            isBusy = false;
+        }
     } 
     private IEnumerator CycleShot() {
+        float loadBuffer = 0;
         while(loadBuffer < 1) {
             loadBuffer += Time.deltaTime * attributes.RateOfFire;
             yield return null; 
         }
         isLoaded = true;
-        Debug.Log("Done Cycling");
     }
 
 
@@ -101,6 +99,7 @@ public class Weapon: UsableItem
         }
     }
     private IEnumerator BurstFire() {
+        int activeSequence = 0;
         isBusy = true;
         while(activeSequence < burstSize){
             if(isLoaded) {
@@ -110,14 +109,13 @@ public class Weapon: UsableItem
             yield return null;
         }
         isBusy = false;
-        activeSequence = 0;
     }
     #endregion
 
     #region UsableItem Methods
     public override void OnPrimaryActionStart() { 
         isReceivingInput = true;
-        if(!isBusy) {
+        if(!isBusy && ammunition.MagAmmo > 0) {
             switch(currentMode) {
                 case FireMode.Auto:
                     Debug.Log("Shooting Auto");
@@ -143,6 +141,10 @@ public class Weapon: UsableItem
     }
     public override void OnSecondaryActionEnd() {
         ToHipfire();
+    }
+    public override void OnReload() {
+        ammunition.Reload(attributes.ReloadSpeed);
+        isLoaded = true;
     }
     public override void ChangeMode() {
         if(currentMode < FireMode.Single) {

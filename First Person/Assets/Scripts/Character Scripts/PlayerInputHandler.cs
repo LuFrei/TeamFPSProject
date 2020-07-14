@@ -64,6 +64,9 @@ public class PlayerInputHandler : MonoBehaviour
 
     }
     
+    void OnReload() {
+        player.OnHand.OnReload();
+    }
 
     #region Enable/Disable
     void OnEnable() {

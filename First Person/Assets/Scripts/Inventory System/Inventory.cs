@@ -7,11 +7,11 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     private int size;
-    private UsableItem[] inventory;
-    private int currentIndex;
+    public UsableItem[] inventory;
+    private int lastIndex;
 
-    public int Size { get; }
-    public int CurrentIndex { get; }
+    public int Size => size;
+    public int LastIndex => lastIndex;
 
     public Inventory(int inventorySize){
         size = inventorySize;
@@ -20,13 +20,13 @@ public class Inventory : MonoBehaviour
 
     //Inventory Navigation functions
     public void GoTo(int index){
-        currentIndex = index;
+        lastIndex = index;
     }
     public void GoDown(){
-        if (currentIndex > 0) currentIndex--;
+        if (lastIndex > 0) lastIndex--;
     }
     public void GoUp(){
-        if (currentIndex < size--) currentIndex++;
+        if (lastIndex < size--) lastIndex++;
     }
 
     //Inventory Manipulation funcations
@@ -41,7 +41,7 @@ public class Inventory : MonoBehaviour
     /// </summary>
     /// <returns>ItemID</returns>
     public UsableItem Get(){
-        return inventory[currentIndex];
+        return inventory[lastIndex];
     }
     /// <summary>
     /// Returns ItemID of specified index

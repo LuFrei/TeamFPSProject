@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Ammo
 {
-    public bool preserveBulletsOnReload;
-
+    //constraints
+    public bool preserveBulletsOnReload = true;
     public bool infiniteAmmo;
 
 
@@ -20,10 +20,10 @@ public class Ammo
     public int MagAmmo => magazineAmmo;
     public int ReserveAmmo => reserveAmmo; 
 
-    public Ammo(int maxMagValue) {
+    public Ammo(int maxMagValue, int defaultReserveSize) {
         magSize = maxMagValue;
         magazineAmmo = magSize;
-        reserveAmmo = magSize * 4;
+        reserveAmmo = magSize * defaultReserveSize;
     }
 
     /// <summary>
@@ -49,6 +49,7 @@ public class Ammo
     }
 
     public void Reload(float speed) {
+        //get how empty thr Mag is
         int valueDifference = magSize - magazineAmmo;
         int transferableValue = reserveAmmo - valueDifference;
 

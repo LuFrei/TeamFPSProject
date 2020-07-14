@@ -13,5 +13,6 @@ public class UsableItem: MonoBehaviour {
     public virtual void OnPrimaryActionEnd() { }
     public virtual void OnSecondaryActionStart() { }
     public virtual void OnSecondaryActionEnd() { }
+    public virtual void OnReload() { }
     public virtual void ChangeMode() { }
 }

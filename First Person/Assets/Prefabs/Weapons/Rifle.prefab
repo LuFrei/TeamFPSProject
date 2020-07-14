@@ -70,8 +70,8 @@ MonoBehaviour:
   currentMode: 0
   burstSize: 3
   FPSCam: {fileID: 0}
-  attributes: {fileID: 11400000, guid: 828c86d5e657ac242aa929e36ddbe1bd, type: 2}
-  bullet: {fileID: 0}
+  attributes: {fileID: 11400000, guid: 6a5c544b02d1c0f46b310814fe9f9a00, type: 2}
+  bullet: {fileID: 2550784476281219091, guid: 120cd6873480de94396fdac515b49dfc, type: 3}
 --- !u!1 &1227838076502803778
 GameObject:
   m_ObjectHideFlags: 0
