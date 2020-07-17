@@ -12,8 +12,11 @@ public class Weapon: UsableItem
     [Header("Dependencies")]
     public FPSCamera FPSCam;
     public WeaponAttributes attributes;
+    private Animator anim;
     [SerializeField] private GameObject bullet;
     
+
+    //Components that make up a "Weapon"
     private AccuracySpread accuracy = new AccuracySpread();
     private Ammo ammunition;
 
@@ -34,7 +37,8 @@ public class Weapon: UsableItem
 
     private void Awake() {
         accuracy.SetNewBloomSource(attributes.HipAccuracy);
-        ammunition = new Ammo(attributes.MagSize, attributes.AmmoReserveLimit);    
+        ammunition = new Ammo(attributes.MagSize, attributes.AmmoReserveLimit);
+        anim = GetComponent<Animator>();
     }
 
     private void Update() {
@@ -47,23 +51,26 @@ public class Weapon: UsableItem
 
 
     private void Shoot(float kickMagnitude) {
+        anim.SetTrigger("shot");
         Instantiate(bullet, FPSCam.Ray.origin, FPSCam.GenerateRandomDeviation(accuracy.Bloom));
         FPSCam.Kick(kickMagnitude, attributes.RecoilControl);
         accuracy.AddBloom(attributes.Stability);
         isLoaded = false;
-        if(ammunition.ExpendBullet()) {
-            StartCoroutine(CycleShot());
-        } else {
-            isBusy = false;
-        }
+        StartCoroutine(CycleShot());
     } 
     private IEnumerator CycleShot() {
         float loadBuffer = 0;
-        while(loadBuffer < 1) {
-            loadBuffer += Time.deltaTime * attributes.RateOfFire;
-            yield return null; 
+        if(ammunition.ExpendBullet()) {
+            while(loadBuffer < 1) {
+                loadBuffer += Time.deltaTime * attributes.RateOfFire;
+                anim.SetFloat("cycleProgress", loadBuffer);
+                yield return null;
+            }
+            isLoaded = true;
+        } else {
+            anim.SetBool("isEmpty", true);
+            isBusy = false;
         }
-        isLoaded = true;
     }
 
 
@@ -143,7 +150,7 @@ public class Weapon: UsableItem
         ToHipfire();
     }
     public override void OnReload() {
-        ammunition.Reload(attributes.ReloadSpeed);
+        if(ammunition.ReserveAmmo > 0) StartCoroutine(ammunition.Reload(attributes.ReloadSpeed, anim));
         isLoaded = true;
     }
     public override void ChangeMode() {
