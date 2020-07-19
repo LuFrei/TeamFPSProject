@@ -59,7 +59,7 @@ public class Ammo
         anim.SetBool("isEmpty", false);
 
         while(reloadTimer < 1) {
-            reloadTimer += Time.deltaTime * speed;
+            reloadTimer += Time.deltaTime / speed;
             anim.SetFloat("reloadProgress", reloadTimer);
             yield return null;
         }

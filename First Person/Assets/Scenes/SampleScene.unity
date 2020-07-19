@@ -500,12 +500,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1627704287}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1227838076438653072, guid: 96458a1a8a42e184986c4be5bf27d36d,
         type: 3}
       propertyPath: m_Name
-      value: Rifle
+      value: Bloc Rifle
       objectReference: {fileID: 0}
     - target: {fileID: 1227838076438653072, guid: 96458a1a8a42e184986c4be5bf27d36d,
         type: 3}
@@ -515,17 +515,17 @@ PrefabInstance:
     - target: {fileID: 1227838076438653073, guid: 96458a1a8a42e184986c4be5bf27d36d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 6.99
       objectReference: {fileID: 0}
     - target: {fileID: 1227838076438653073, guid: 96458a1a8a42e184986c4be5bf27d36d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.1899998
       objectReference: {fileID: 0}
     - target: {fileID: 1227838076438653073, guid: 96458a1a8a42e184986c4be5bf27d36d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.96300006
       objectReference: {fileID: 0}
     - target: {fileID: 1227838076438653073, guid: 96458a1a8a42e184986c4be5bf27d36d,
         type: 3}
@@ -550,7 +550,7 @@ PrefabInstance:
     - target: {fileID: 1227838076438653073, guid: 96458a1a8a42e184986c4be5bf27d36d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1227838076438653073, guid: 96458a1a8a42e184986c4be5bf27d36d,
         type: 3}
@@ -570,17 +570,17 @@ PrefabInstance:
     - target: {fileID: 1227838076438653073, guid: 96458a1a8a42e184986c4be5bf27d36d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 1227838076438653073, guid: 96458a1a8a42e184986c4be5bf27d36d,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 1227838076438653073, guid: 96458a1a8a42e184986c4be5bf27d36d,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 1227838076502803778, guid: 96458a1a8a42e184986c4be5bf27d36d,
         type: 3}
@@ -724,7 +724,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1627704287}
     m_Modifications:
     - target: {fileID: -885620462084149351, guid: 48d4c55385ce601499017bbcfbb6e7aa,
         type: 3}
@@ -734,17 +734,17 @@ PrefabInstance:
     - target: {fileID: 563061787720997763, guid: 48d4c55385ce601499017bbcfbb6e7aa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.74
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 563061787720997763, guid: 48d4c55385ce601499017bbcfbb6e7aa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1899998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 563061787720997763, guid: 48d4c55385ce601499017bbcfbb6e7aa,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.96300006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 563061787720997763, guid: 48d4c55385ce601499017bbcfbb6e7aa,
         type: 3}
@@ -769,7 +769,7 @@ PrefabInstance:
     - target: {fileID: 563061787720997763, guid: 48d4c55385ce601499017bbcfbb6e7aa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 563061787720997763, guid: 48d4c55385ce601499017bbcfbb6e7aa,
         type: 3}
@@ -789,22 +789,22 @@ PrefabInstance:
     - target: {fileID: 563061787720997763, guid: 48d4c55385ce601499017bbcfbb6e7aa,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 563061787720997763, guid: 48d4c55385ce601499017bbcfbb6e7aa,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 563061787720997763, guid: 48d4c55385ce601499017bbcfbb6e7aa,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4625746215934903101, guid: 48d4c55385ce601499017bbcfbb6e7aa,
         type: 3}
       propertyPath: m_Name
-      value: MachineGun
+      value: Bloc Chain Gun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48d4c55385ce601499017bbcfbb6e7aa, type: 3}
@@ -1173,18 +1173,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &952819195 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3903198458262937108, guid: 96458a1a8a42e184986c4be5bf27d36d,
-    type: 3}
-  m_PrefabInstance: {fileID: 520692161}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9371f497c96731941ab84785d4f9a935, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1022000562
 GameObject:
   m_ObjectHideFlags: 0
@@ -2519,7 +2507,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onHand
       value: 
-      objectReference: {fileID: 952819195}
+      objectReference: {fileID: 1207929843}
     - target: {fileID: 6573187086025467635, guid: 0e590f624efa10d42aa6d1f7736886a5,
         type: 3}
       propertyPath: head

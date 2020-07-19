@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 684332951172741391}
   - component: {fileID: -885620462084149351}
   m_Layer: 8
-  m_Name: MachineGun
+  m_Name: Bloc Chain Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
