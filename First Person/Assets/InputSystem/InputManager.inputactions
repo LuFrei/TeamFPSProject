@@ -100,6 +100,54 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Swap to Primary Weapon",
+                    "type": "Button",
+                    "id": "6cea371e-124f-423c-872d-a0fb8fd8ed90",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Swap to Secondary Weapon",
+                    "type": "Button",
+                    "id": "c9ae786b-2f7e-4af5-80cd-8620d1c3c4dd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Swap to Knife",
+                    "type": "Button",
+                    "id": "f96a4186-367a-469c-b698-eee25301bb35",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Swap to Grenade",
+                    "type": "Button",
+                    "id": "ffb5725f-0b9d-4ae2-964c-93317e31caa4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Swap to Utility",
+                    "type": "Button",
+                    "id": "89857c0d-19cb-497c-8892-f5118fd8294f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Swap to Equipment",
+                    "type": "Button",
+                    "id": "f23d7dec-e566-4ee5-830d-a210ff655f90",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -375,6 +423,72 @@
                     "processors": "",
                     "groups": "KBM",
                     "action": "Prone",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "251dda14-aa9d-4b06-b22b-c01fc5595928",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Swap to Primary Weapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ce5ac2a-1ad8-41f8-a6f4-35e4f4b160d2",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Swap to Knife",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "46b6f4d5-e941-46dd-86eb-6d030e73cb8c",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Swap to Grenade",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "97d74e93-9f1f-453b-b64c-c3f0737a6b03",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Swap to Utility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aa76c2d2-32b2-4a77-b7f7-e4f50568986f",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Swap to Equipment",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e22f5868-f739-4602-bcda-0cd449c2ea0b",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Swap to Secondary Weapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -113,6 +113,54 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Swap to Primary Weapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""6cea371e-124f-423c-872d-a0fb8fd8ed90"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Swap to Secondary Weapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""c9ae786b-2f7e-4af5-80cd-8620d1c3c4dd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Swap to Knife"",
+                    ""type"": ""Button"",
+                    ""id"": ""f96a4186-367a-469c-b698-eee25301bb35"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Swap to Grenade"",
+                    ""type"": ""Button"",
+                    ""id"": ""ffb5725f-0b9d-4ae2-964c-93317e31caa4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Swap to Utility"",
+                    ""type"": ""Button"",
+                    ""id"": ""89857c0d-19cb-497c-8892-f5118fd8294f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Swap to Equipment"",
+                    ""type"": ""Button"",
+                    ""id"": ""f23d7dec-e566-4ee5-830d-a210ff655f90"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -390,6 +438,72 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""action"": ""Prone"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""251dda14-aa9d-4b06-b22b-c01fc5595928"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap to Primary Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ce5ac2a-1ad8-41f8-a6f4-35e4f4b160d2"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap to Knife"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46b6f4d5-e941-46dd-86eb-6d030e73cb8c"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap to Grenade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""97d74e93-9f1f-453b-b64c-c3f0737a6b03"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap to Utility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa76c2d2-32b2-4a77-b7f7-e4f50568986f"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap to Equipment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e22f5868-f739-4602-bcda-0cd449c2ea0b"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap to Secondary Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -476,6 +590,12 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         m_Player_Melee = m_Player.FindAction("Melee", throwIfNotFound: true);
         m_Player_ChangeMode = m_Player.FindAction("Change Mode", throwIfNotFound: true);
+        m_Player_SwaptoPrimaryWeapon = m_Player.FindAction("Swap to Primary Weapon", throwIfNotFound: true);
+        m_Player_SwaptoSecondaryWeapon = m_Player.FindAction("Swap to Secondary Weapon", throwIfNotFound: true);
+        m_Player_SwaptoKnife = m_Player.FindAction("Swap to Knife", throwIfNotFound: true);
+        m_Player_SwaptoGrenade = m_Player.FindAction("Swap to Grenade", throwIfNotFound: true);
+        m_Player_SwaptoUtility = m_Player.FindAction("Swap to Utility", throwIfNotFound: true);
+        m_Player_SwaptoEquipment = m_Player.FindAction("Swap to Equipment", throwIfNotFound: true);
         // General
         m_General = asset.FindActionMap("General", throwIfNotFound: true);
         m_General_OpenMenu = m_General.FindAction("Open Menu", throwIfNotFound: true);
@@ -540,6 +660,12 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Reload;
     private readonly InputAction m_Player_Melee;
     private readonly InputAction m_Player_ChangeMode;
+    private readonly InputAction m_Player_SwaptoPrimaryWeapon;
+    private readonly InputAction m_Player_SwaptoSecondaryWeapon;
+    private readonly InputAction m_Player_SwaptoKnife;
+    private readonly InputAction m_Player_SwaptoGrenade;
+    private readonly InputAction m_Player_SwaptoUtility;
+    private readonly InputAction m_Player_SwaptoEquipment;
     public struct PlayerActions
     {
         private @InputManager m_Wrapper;
@@ -556,6 +682,12 @@ public class @InputManager : IInputActionCollection, IDisposable
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputAction @Melee => m_Wrapper.m_Player_Melee;
         public InputAction @ChangeMode => m_Wrapper.m_Player_ChangeMode;
+        public InputAction @SwaptoPrimaryWeapon => m_Wrapper.m_Player_SwaptoPrimaryWeapon;
+        public InputAction @SwaptoSecondaryWeapon => m_Wrapper.m_Player_SwaptoSecondaryWeapon;
+        public InputAction @SwaptoKnife => m_Wrapper.m_Player_SwaptoKnife;
+        public InputAction @SwaptoGrenade => m_Wrapper.m_Player_SwaptoGrenade;
+        public InputAction @SwaptoUtility => m_Wrapper.m_Player_SwaptoUtility;
+        public InputAction @SwaptoEquipment => m_Wrapper.m_Player_SwaptoEquipment;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -601,6 +733,24 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @ChangeMode.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeMode;
                 @ChangeMode.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeMode;
                 @ChangeMode.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeMode;
+                @SwaptoPrimaryWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoPrimaryWeapon;
+                @SwaptoPrimaryWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoPrimaryWeapon;
+                @SwaptoPrimaryWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoPrimaryWeapon;
+                @SwaptoSecondaryWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoSecondaryWeapon;
+                @SwaptoSecondaryWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoSecondaryWeapon;
+                @SwaptoSecondaryWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoSecondaryWeapon;
+                @SwaptoKnife.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoKnife;
+                @SwaptoKnife.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoKnife;
+                @SwaptoKnife.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoKnife;
+                @SwaptoGrenade.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoGrenade;
+                @SwaptoGrenade.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoGrenade;
+                @SwaptoGrenade.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoGrenade;
+                @SwaptoUtility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoUtility;
+                @SwaptoUtility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoUtility;
+                @SwaptoUtility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoUtility;
+                @SwaptoEquipment.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoEquipment;
+                @SwaptoEquipment.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoEquipment;
+                @SwaptoEquipment.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwaptoEquipment;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -641,6 +791,24 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @ChangeMode.started += instance.OnChangeMode;
                 @ChangeMode.performed += instance.OnChangeMode;
                 @ChangeMode.canceled += instance.OnChangeMode;
+                @SwaptoPrimaryWeapon.started += instance.OnSwaptoPrimaryWeapon;
+                @SwaptoPrimaryWeapon.performed += instance.OnSwaptoPrimaryWeapon;
+                @SwaptoPrimaryWeapon.canceled += instance.OnSwaptoPrimaryWeapon;
+                @SwaptoSecondaryWeapon.started += instance.OnSwaptoSecondaryWeapon;
+                @SwaptoSecondaryWeapon.performed += instance.OnSwaptoSecondaryWeapon;
+                @SwaptoSecondaryWeapon.canceled += instance.OnSwaptoSecondaryWeapon;
+                @SwaptoKnife.started += instance.OnSwaptoKnife;
+                @SwaptoKnife.performed += instance.OnSwaptoKnife;
+                @SwaptoKnife.canceled += instance.OnSwaptoKnife;
+                @SwaptoGrenade.started += instance.OnSwaptoGrenade;
+                @SwaptoGrenade.performed += instance.OnSwaptoGrenade;
+                @SwaptoGrenade.canceled += instance.OnSwaptoGrenade;
+                @SwaptoUtility.started += instance.OnSwaptoUtility;
+                @SwaptoUtility.performed += instance.OnSwaptoUtility;
+                @SwaptoUtility.canceled += instance.OnSwaptoUtility;
+                @SwaptoEquipment.started += instance.OnSwaptoEquipment;
+                @SwaptoEquipment.performed += instance.OnSwaptoEquipment;
+                @SwaptoEquipment.canceled += instance.OnSwaptoEquipment;
             }
         }
     }
@@ -710,6 +878,12 @@ public class @InputManager : IInputActionCollection, IDisposable
         void OnReload(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
         void OnChangeMode(InputAction.CallbackContext context);
+        void OnSwaptoPrimaryWeapon(InputAction.CallbackContext context);
+        void OnSwaptoSecondaryWeapon(InputAction.CallbackContext context);
+        void OnSwaptoKnife(InputAction.CallbackContext context);
+        void OnSwaptoGrenade(InputAction.CallbackContext context);
+        void OnSwaptoUtility(InputAction.CallbackContext context);
+        void OnSwaptoEquipment(InputAction.CallbackContext context);
     }
     public interface IGeneralActions
     {

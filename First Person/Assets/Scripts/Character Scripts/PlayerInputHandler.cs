@@ -24,7 +24,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         input.General.OpenMenu.performed += ctx => gm.ChangeGameState();
     }
-
+    
     void OnMove(InputValue value) {
         player.MoveVector = value.Get<Vector2>(); 
     }
@@ -62,6 +62,10 @@ public class PlayerInputHandler : MonoBehaviour
             player.OnHand.OnSecondaryActionEnd();
         }
 
+    }
+
+    void OnSwapToPrimaryWeapon() {
+        Debug.Log("it's working");
     }
     
     void OnReload() {
