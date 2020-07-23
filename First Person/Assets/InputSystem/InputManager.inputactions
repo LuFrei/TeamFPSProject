@@ -102,7 +102,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Swap to Primary Weapon",
+                    "name": "Swap To Primary",
                     "type": "Button",
                     "id": "6cea371e-124f-423c-872d-a0fb8fd8ed90",
                     "expectedControlType": "Button",
@@ -110,7 +110,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Swap to Secondary Weapon",
+                    "name": "Swap To Secondary",
                     "type": "Button",
                     "id": "c9ae786b-2f7e-4af5-80cd-8620d1c3c4dd",
                     "expectedControlType": "Button",
@@ -118,7 +118,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Swap to Knife",
+                    "name": "Swap To Knife",
                     "type": "Button",
                     "id": "f96a4186-367a-469c-b698-eee25301bb35",
                     "expectedControlType": "Button",
@@ -126,7 +126,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Swap to Grenade",
+                    "name": "Swap To Grenade",
                     "type": "Button",
                     "id": "ffb5725f-0b9d-4ae2-964c-93317e31caa4",
                     "expectedControlType": "Button",
@@ -134,7 +134,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Swap to Utility",
+                    "name": "Swap To Utility",
                     "type": "Button",
                     "id": "89857c0d-19cb-497c-8892-f5118fd8294f",
                     "expectedControlType": "Button",
@@ -142,7 +142,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Swap to Equipment",
+                    "name": "Swap To Equipment",
                     "type": "Button",
                     "id": "f23d7dec-e566-4ee5-830d-a210ff655f90",
                     "expectedControlType": "Button",
@@ -233,7 +233,7 @@
                     "id": "73823106-0ceb-402b-9354-16062a8de184",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "groups": "PS4",
                     "action": "Look",
                     "isComposite": false,
@@ -433,7 +433,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Swap to Primary Weapon",
+                    "action": "Swap To Primary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -444,7 +444,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Swap to Knife",
+                    "action": "Swap To Knife",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -455,7 +455,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Swap to Grenade",
+                    "action": "Swap To Grenade",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -466,7 +466,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Swap to Utility",
+                    "action": "Swap To Utility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -477,7 +477,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Swap to Equipment",
+                    "action": "Swap To Equipment",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -488,7 +488,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Swap to Secondary Weapon",
+                    "action": "Swap To Secondary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

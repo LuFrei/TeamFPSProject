@@ -18,13 +18,6 @@ public class Ammo
     public int MagAmmo => magazineAmmo;
     public int ReserveAmmo => reserveAmmo;
 
-
-    public Ammo(int maxMagValue, int defaultReserveSize) {
-        magSize = maxMagValue;
-        magazineAmmo = magSize;
-        reserveAmmo = magSize * defaultReserveSize;
-    }
-
     /// <summary>
     /// Set how much bullets in a given magazine
     /// </summary>
@@ -33,7 +26,9 @@ public class Ammo
     public void SetMagValue(int value) {
         magazineAmmo = value;
     }
-
+    public void SetMagSize(int value) {
+        magSize = value;
+    }
     /// <summary>
     /// Spends a bullet from the maganize. Returns false if magainze is empty.
     /// </summary>

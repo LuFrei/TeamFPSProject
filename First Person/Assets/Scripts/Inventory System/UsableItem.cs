@@ -9,10 +9,10 @@ public class UsableItem: MonoBehaviour {
     public Vector3 RayDirection { set => rayDir = value; }
     public virtual AccuracySpread Accuracy { get; }
     public virtual Ammo Ammo { get; }
-    public virtual void OnPrimaryActionStart() { }
-    public virtual void OnPrimaryActionEnd() { }
-    public virtual void OnSecondaryActionStart() { }
-    public virtual void OnSecondaryActionEnd() { }
-    public virtual void OnReload() { }
+    public virtual void PrimaryActionStart() { }
+    public virtual void PrimaryActionEnd() { }
+    public virtual void SecondaryActionStart() { }
+    public virtual void SecondaryActionEnd() { }
+    public virtual void Reload() { }
     public virtual void ChangeMode() { }
 }

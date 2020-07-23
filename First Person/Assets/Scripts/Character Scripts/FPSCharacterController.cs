@@ -14,26 +14,30 @@ public class FPSCharacterController: MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GroundCheck gc;
     [SerializeField] private FPSCamera head;
-    
+    [SerializeField] private EquippedItem hand;
 
     //This might be moved out and to be produced by Input Manager and AI Classes
-    private Vector2 moveVector;
 
-    private float baseHeight; 
-
-    
+    //stance
+    private float baseHeight;
     public Stance currentStance;
+
+    //movement
+    private Vector2 moveVector;
 
     [Header("Movement Settings")]
     [SerializeField] private float speed = 5;
     private float speedMultiplier = 1;
+    
+    //Jump
     [SerializeField] private float jumpHeight = 3;
+
+    //inventory
+    private Inventory inv;
     
 
-    //info for current item player is holding
-    [SerializeField]private UsableItem onHand;
-     
-    public UsableItem OnHand => onHand;
+    
+    public EquippedItem Hand => hand;
     public Vector2 MoveVector { set => moveVector = value * Time.deltaTime * (speed); }
     public FPSCamera Head => head;
 
@@ -41,9 +45,10 @@ public class FPSCharacterController: MonoBehaviour
 
     private void Awake()
     {
+        inv = GetComponent<Inventory>();
         head = GetComponentInChildren<FPSCamera>();
-        //head = cam.transform;
         baseHeight = head.transform.localPosition.y;
+        EquipItem(0);
     }
     private void FixedUpdate()
     {
@@ -57,12 +62,11 @@ public class FPSCharacterController: MonoBehaviour
         direction *= speedMultiplier;
         transform.Translate(direction.x, 0, direction.y);
     }
-
-
     public void Jump()
     {
         rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         //for now we will be implementing force, however it's usually unpredictable, so I'd like to have a look into this later
+        //->Rigidbody.velocity<-
     }
     public void ToStance(Stance stance){
         float heightAndSpeedMultiplier = 1f;
@@ -86,8 +90,11 @@ public class FPSCharacterController: MonoBehaviour
         head.transform.localPosition = new Vector3(0, baseHeight * heightAndSpeedMultiplier, 0);
 
         speedMultiplier = heightAndSpeedMultiplier;
-        onHand.Accuracy.SetBloomModifier(bloomMultiplier);
+        hand.CurrentRightEquipped.Accuracy.SetBloomModifier(bloomMultiplier);
 
         currentStance = stance;
+    }
+    public void EquipItem(int inventoryIndex) {
+        hand.ChangeHand(inv.Get(inventoryIndex));
     }
 }

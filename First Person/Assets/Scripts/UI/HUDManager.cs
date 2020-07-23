@@ -19,8 +19,9 @@ public class HUDManager: MonoBehaviour
     }
 
     private void Update() {
-        crosshair.UpdateBloom(ScaleDegreesToScreen(player.OnHand.Accuracy.Bloom * 2));
-        ammo.SetCounterValue(player.OnHand.Ammo.MagAmmo, player.OnHand.Ammo.ReserveAmmo);
+        crosshair.UpdateBloom(ScaleDegreesToScreen(player.Hand.CurrentRightEquipped.Accuracy.Bloom * 2));
+        Debug.Log(player.Hand.CurrentRightEquipped.Ammo);
+        ammo.SetCounterValue(player.Hand.CurrentRightEquipped.Ammo.MagAmmo, player.Hand.CurrentRightEquipped.Ammo.ReserveAmmo);
     }
     
     private float ScaleDegreesToScreen(float value) {

@@ -12,19 +12,23 @@ public class PlayerInputHandler : MonoBehaviour
 
     public bool isAiming = false;
 
-    // Start is called before the first frame update
-    void Awake() {
+    private void Awake() {
         input = new InputManager();
+    }
+
+    // Start is called before the first frame update
+    void Start() {
+
 
         //input.Player.Look.performed += ctx => player.LookVector = ctx.ReadValue<Vector2>();
         input.Player.Jump.performed += ctx => player.Jump();
-        input.Player.Shoot.started += ctx => player.OnHand.OnPrimaryActionStart();
-        input.Player.Shoot.canceled += ctx => player.OnHand.OnPrimaryActionEnd();
-        input.Player.ChangeMode.performed += ctx => player.OnHand.ChangeMode();
+        input.Player.Shoot.started += ctx => player.Hand.CurrentRightEquipped.PrimaryActionStart();
+        input.Player.Shoot.canceled += ctx => player.Hand.CurrentRightEquipped.PrimaryActionEnd();
+        input.Player.ChangeMode.performed += ctx => player.Hand.CurrentRightEquipped.ChangeMode();
 
         input.General.OpenMenu.performed += ctx => gm.ChangeGameState();
     }
-    
+
     void OnMove(InputValue value) {
         player.MoveVector = value.Get<Vector2>(); 
     }
@@ -56,20 +60,26 @@ public class PlayerInputHandler : MonoBehaviour
         //"Toggle" logic
         if(value.isPressed && !isAiming) {
             isAiming = true;
-            player.OnHand.OnSecondaryActionStart();
+            player.Hand.CurrentRightEquipped.SecondaryActionStart();
         } else if(value.isPressed) {
             isAiming = false;
-            player.OnHand.OnSecondaryActionEnd();
+            player.Hand.CurrentRightEquipped.SecondaryActionEnd();
         }
 
     }
 
-    void OnSwapToPrimaryWeapon() {
-        Debug.Log("it's working");
+    void OnSwapToPrimary() {
+        player.EquipItem(0);
+        Debug.Log("switched to first weapon!");
     }
-    
+
+    void OnSwapToSecondary() {
+        player.EquipItem(1);
+        Debug.Log("switched to second weapon!");
+    }
+
     void OnReload() {
-        player.OnHand.OnReload();
+        player.Hand.CurrentRightEquipped.Reload();
     }
 
     #region Enable/Disable

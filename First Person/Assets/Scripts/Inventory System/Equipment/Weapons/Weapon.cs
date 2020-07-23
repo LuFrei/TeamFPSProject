@@ -10,7 +10,7 @@ public class Weapon: UsableItem
     public int burstSize = 3; //if applicable
 
     [Header("Dependencies")]
-    public FPSCamera FPSCam;
+    public FPSCamera FPSCam; //<- This is going to have to be moved. This dependency is quite bad. Perhaps I can use events here.
     public WeaponAttributes attributes;
     private Animator anim;
     [SerializeField] private GameObject bullet;
@@ -18,7 +18,7 @@ public class Weapon: UsableItem
 
     //Components that make up a "Weapon"
     private AccuracySpread accuracy = new AccuracySpread();
-    private Ammo ammunition;
+    private Ammo ammunition = new Ammo();
 
     //Chamber and Trigger
     private bool isLoaded = true; //Ready to shoot the next bullet
@@ -34,11 +34,16 @@ public class Weapon: UsableItem
     public override AccuracySpread Accuracy => accuracy;
     public override Ammo Ammo => ammunition;
 
-
+    
     private void Awake() {
         accuracy.SetNewBloomSource(attributes.HipAccuracy);
-        ammunition = new Ammo(attributes.MagSize, attributes.AmmoReserveLimit);
+        ammunition.SetMagSize(attributes.MagSize);
+        ammunition.RestockAmmo(attributes.AmmoReserveLimit);
         anim = GetComponent<Animator>();
+    }
+
+    private void Start() {
+        FPSCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FPSCamera>();
     }
 
     private void Update() {
@@ -120,7 +125,7 @@ public class Weapon: UsableItem
     #endregion
 
     #region UsableItem Methods
-    public override void OnPrimaryActionStart() { 
+    public override void PrimaryActionStart() { 
         isReceivingInput = true;
         if(!isBusy && ammunition.MagAmmo > 0) {
             switch(currentMode) {
@@ -139,17 +144,17 @@ public class Weapon: UsableItem
             }
         }
     }
-    public override void OnPrimaryActionEnd() {
+    public override void PrimaryActionEnd() {
         isReceivingInput = false;
     }
 
-    public override void OnSecondaryActionStart() {
+    public override void SecondaryActionStart() {
         ToAimDownSight(aimZoom);
     }
-    public override void OnSecondaryActionEnd() {
+    public override void SecondaryActionEnd() {
         ToHipfire();
     }
-    public override void OnReload() {
+    public override void Reload() {
         if(ammunition.ReserveAmmo > 0) StartCoroutine(ammunition.Reload(attributes.ReloadSpeed, anim));
         isLoaded = true;
     }

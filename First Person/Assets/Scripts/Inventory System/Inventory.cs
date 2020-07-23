@@ -7,7 +7,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     private int size;
-    public UsableItem[] inventory;
+    public GameObject[] inventory;
     private int lastIndex;
 
     public int Size => size;
@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
 
     public Inventory(int inventorySize){
         size = inventorySize;
-        inventory = new UsableItem[size];
+        inventory = new GameObject[size];
     }
 
     //Inventory Navigation functions
@@ -30,17 +30,17 @@ public class Inventory : MonoBehaviour
     }
 
     //Inventory Manipulation funcations
-    public void Clear(int index){
+    public void Clear(int index){ 
         inventory[index] = null;
     }
-    public void Set(int index, UsableItem item){
+    public void Set(int index, GameObject item){
         inventory[index] = item;
     }
     /// <summary>
     /// Returns ItemID of currentIndex
     /// </summary>
     /// <returns>ItemID</returns>
-    public UsableItem Get(){
+    public GameObject Get(){
         return inventory[lastIndex];
     }
     /// <summary>
@@ -48,7 +48,7 @@ public class Inventory : MonoBehaviour
     /// </summary>
     /// <param name="index">inventory "slot"</param>
     /// <returns>ItemID</returns>
-    public UsableItem Get(int index){
+    public GameObject Get(int index){
         return inventory[index];
     }
 
