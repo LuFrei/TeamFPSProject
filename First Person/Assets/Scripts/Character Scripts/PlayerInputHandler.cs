@@ -8,25 +8,34 @@ public class PlayerInputHandler : MonoBehaviour
 
     [SerializeField]private FPSCharacterController player;
     [SerializeField]private GameManager gm;
-    private InputManager input;
+    [SerializeField] private PlayerInput input;
+    private InputManager inputAsset;
 
     public bool isAiming = false;
 
     private void Awake() {
-        input = new InputManager();
+        inputAsset = new InputManager();
+        input = GetComponent<PlayerInput>();
     }
 
-    // Start is called before the first frame update
-    void Start() {
 
 
-        //input.Player.Look.performed += ctx => player.LookVector = ctx.ReadValue<Vector2>();
-        input.Player.Jump.performed += ctx => player.Jump();
-        input.Player.Shoot.started += ctx => player.Hand.CurrentRightEquipped.PrimaryActionStart();
-        input.Player.Shoot.canceled += ctx => player.Hand.CurrentRightEquipped.PrimaryActionEnd();
-        input.Player.ChangeMode.performed += ctx => player.Hand.CurrentRightEquipped.ChangeMode();
 
-        input.General.OpenMenu.performed += ctx => gm.ChangeGameState();
+    void OnChangeMode() {
+        player.Hand.CurrentRightEquipped.ChangeMode();
+    }
+
+    void OnJump() {
+        player.Jump();
+    }
+
+    void OnToggleMenu() {
+        Debug.Log("Opening menu!");
+        if(gm.AccessMenu()) {
+            input.SwitchCurrentActionMap("UI");
+        } else {
+            input.SwitchCurrentActionMap("Player");
+        }
     }
 
     void OnMove(InputValue value) {
@@ -35,6 +44,15 @@ public class PlayerInputHandler : MonoBehaviour
 
     void OnLook(InputValue value) {
         player.Head.LookVector = value.Get<Vector2>();
+    }
+
+    void OnShoot(InputValue value) {
+        Debug.Log("OnShoot called!");
+        if(value.isPressed) {
+            player.Hand.CurrentRightEquipped.PrimaryActionStart();
+        } else if(!value.isPressed) {
+            player.Hand.CurrentRightEquipped.PrimaryActionEnd();
+        }
     }
 
     //stancemodes
@@ -82,13 +100,14 @@ public class PlayerInputHandler : MonoBehaviour
         player.Hand.CurrentRightEquipped.Reload();
     }
 
-    #region Enable/Disable
+
+
+
+
     void OnEnable() {
-        input.Enable();
+        inputAsset.Enable();
     }
-     
     void OnDisable() {
-        input.Disable();
+        inputAsset.Disable();
     }
-    #endregion
 }
