@@ -4,7 +4,7 @@ using UnityEngine;
 
 //Inventory system will use a NumID system that can be assigned to anything outside of this class.
 //0 will Always be treated as "empty"
-public class Inventory : MonoBehaviour
+public class PlayerInventory : MonoBehaviour
 {
     private int size;
     public GameObject[] inventory;
@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour
     public int Size => size;
     public int LastIndex => lastIndex;
 
-    public Inventory(int inventorySize){
+    public PlayerInventory(int inventorySize){
         size = inventorySize;
         inventory = new GameObject[size];
     }

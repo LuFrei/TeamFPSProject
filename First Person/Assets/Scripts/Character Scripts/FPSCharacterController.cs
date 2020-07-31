@@ -33,7 +33,7 @@ public class FPSCharacterController: MonoBehaviour
     [SerializeField] private float jumpHeight = 3;
 
     //inventory
-    private Inventory inv;
+    private PlayerInventory inv;
     
 
     
@@ -45,7 +45,7 @@ public class FPSCharacterController: MonoBehaviour
 
     private void Awake()
     {
-        inv = GetComponent<Inventory>();
+        inv = GetComponent<PlayerInventory>();
         head = GetComponentInChildren<FPSCamera>();
         baseHeight = head.transform.localPosition.y;
         EquipItem(0);

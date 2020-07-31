@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ItemSwitcher : MonoBehaviour
 {
-    private Inventory inv;
+    private PlayerInventory inv;
 
     private void Awake() {
-        inv = GetComponentInParent<Inventory>();
+        inv = GetComponentInParent<PlayerInventory>();
     }
 
      

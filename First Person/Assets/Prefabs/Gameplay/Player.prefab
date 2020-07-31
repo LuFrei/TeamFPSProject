@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8953835769880620320}
   - component: {fileID: 6573187086025467635}
   - component: {fileID: 1993545315}
+  - component: {fileID: 755393323005155483}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485424257355365159}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.67106915, y: -4.4785423, z: -9.53001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8551715616552070212}
@@ -137,11 +138,11 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: dd100e8c-bfb5-4e18-9b1e-75a94bbace41
     m_ActionName: General/Open Menu[/Keyboard/escape]
-  m_NeverAutoSwitchControlSchemes: 1
+  m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 6042160125660579979}
 --- !u!114 &8953835769880620320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6573187086025467635}
   gm: {fileID: 0}
+  input: {fileID: 0}
+  isAiming: 0
 --- !u!114 &6573187086025467635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,18 +171,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea76454db238ffc4db3350fb6a518f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 8551715616552070212}
   rb: {fileID: 2687854554416049481}
   gc: {fileID: 1993545315}
-  lookAngle: {x: 0, y: 0}
-  mouseLookAngle: {x: 0, y: 0}
+  head: {fileID: 137276108}
+  hand: {fileID: 1036916272}
   currentStance: 0
   speed: 5
   jumpHeight: 3
-  sensitivity: 4.2
-  maxLookAngle: 90
-  minLookAngle: -90
-  onHand: {fileID: 0}
 --- !u!114 &1993545315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +190,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bdcf85029f738e4885a6dc022e1741e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &755393323005155483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485424257355365159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84798df0283d7124d83a274e0660ef16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []
 --- !u!1 &2385674289432870631
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6311036196878831809}
+  - component: {fileID: 1036916272}
   m_Layer: 8
   m_Name: Hand
   m_TagString: Untagged
@@ -217,11 +229,26 @@ Transform:
   m_GameObject: {fileID: 2385674289432870631}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.43, y: -0.74, z: 0.87}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 86444678862015162}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1036916272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2385674289432870631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8694ac80d217b74487e70723489e867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemHolder: {fileID: 0}
+  itemDataRight: {fileID: 0}
+  rightHandItem: {fileID: 0}
 --- !u!1 &4064060051990624829
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +308,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 1000
-  field of view: 65
+  field of view: 67.77549
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -319,7 +346,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a83d96d0504a243be36ba822f67117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  body: {fileID: 5043579246810665544}
+  sensitivity: 5
+  maxLookAngle: 90
+  minLookAngle: -90
+  baseFieldOfView: 0
 --- !u!1 &8049747902782470180
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 86444678862015162}
   - component: {fileID: 7184124548876464241}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
