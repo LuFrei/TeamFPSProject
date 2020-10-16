@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MissionMenu : MonoBehaviour {
      
-    void QuitToMenu() {
+    public void QuitToMenu() {
         SceneManager.LoadScene(0);
     }
 }
