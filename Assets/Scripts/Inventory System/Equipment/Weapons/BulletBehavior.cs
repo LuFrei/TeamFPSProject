@@ -27,7 +27,7 @@ public class BulletBehavior: MonoBehaviour
         //Set variables 
         line = GetComponent<LineRenderer>();
         ray = new Ray(transform.position, transform.forward);
-        Debug.DrawRay(ray.origin, ray.direction * magnitude, Color.blue);
+        //Debug.DrawRay(ray.origin, ray.direction * magnitude, Color.blue);
         ShootRay();
     }
 

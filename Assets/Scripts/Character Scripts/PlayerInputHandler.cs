@@ -30,7 +30,6 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     void OnToggleMenu() {
-        Debug.Log("Opening menu!");
         if(gm.AccessMenu()) {
             input.SwitchCurrentActionMap("UI");
         } else {
@@ -47,7 +46,6 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     void OnShoot(InputValue value) {
-        Debug.Log("OnShoot called!");
         if(value.isPressed) {
             player.Hand.CurrentRightEquipped.PrimaryActionStart();
         } else if(!value.isPressed) {
@@ -88,12 +86,10 @@ public class PlayerInputHandler : MonoBehaviour
 
     void OnSwapToPrimary() {
         player.EquipItem(0);
-        Debug.Log("switched to first weapon!");
     }
 
     void OnSwapToSecondary() {
         player.EquipItem(1);
-        Debug.Log("switched to second weapon!");
     }
 
     void OnReload() {

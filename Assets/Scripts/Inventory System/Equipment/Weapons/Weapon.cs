@@ -130,15 +130,12 @@ public class Weapon: UsableItem
         if(!isBusy && ammunition.MagAmmo > 0) {
             switch(currentMode) {
                 case FireMode.Auto:
-                    Debug.Log("Shooting Auto");
                     StartCoroutine(AutoFire());
                     break;
                 case FireMode.Burst:
-                    Debug.Log("Shooting Burst");
                     StartCoroutine(BurstFire());
                     break;
                 case FireMode.Single:
-                    Debug.Log("Shooting Single");
                     SingleFire();
                     break;
             }
@@ -164,8 +161,6 @@ public class Weapon: UsableItem
         } else {
             currentMode = FireMode.Auto;
         }
-
-        Debug.Log(currentMode);
     }
     #endregion
 }

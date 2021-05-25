@@ -1,6 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public class CameraController : MonoBehaviour
+{
+
+
 
 /// <summary>
 /// Contains data of where/what the player is looking, as well as several functionalities for shooting weapons.
@@ -11,16 +16,20 @@ public class FPSCamera: MonoBehaviour
     private Camera cam;
     [SerializeField] private Transform body;
 
+        //This data should be coming from outside, via an input manager
+
     [Header("Camera Control Settings")]
     [SerializeField] private float sensitivity = 5;
     [SerializeField] private float maxLookAngle = 90;
     [SerializeField] private float minLookAngle = -90;
     [SerializeField] private float baseFieldOfView;
 
+
+        //! things liek kick and camera shake should be effects applied to the camera from the outside.
     private Vector2 lookAngle; //Total angle inclusing things like camera kick
     private Vector2 mouseLookAngle; //records the angle the camera should be exclusively from mouse input
 
-
+        //!This can an external script
     //Center-screen ray Data 
     private Ray ray;
     private RaycastHit hit;
@@ -50,14 +59,13 @@ public class FPSCamera: MonoBehaviour
 
 
 
-    private void Awake()
-    {
+    private void Awake() {
         cam = GetComponent<Camera>();
     }
     private void Start() {
         baseFieldOfView = cam.fieldOfView;
     }
-    private void FixedUpdate(){
+    private void FixedUpdate() {
         Look(lookAngle);
         CastRay(out hit);
     }
@@ -71,9 +79,9 @@ public class FPSCamera: MonoBehaviour
     private void CastRay(out RaycastHit hit) {
         ray = cam.ViewportPointToRay(centerPoint);
         if(Physics.Raycast(ray, out hit)) {
-            //Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green);
+             //Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green);
         } else {
-            //Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
+            //ebug.DrawRay(ray.origin, ray.direction * 100, Color.red);
         }
     }
 
@@ -99,4 +107,14 @@ public class FPSCamera: MonoBehaviour
     public void Zoom(float multiplier) {
         cam.fieldOfView = baseFieldOfView / multiplier;
     }
+}
+
+
+
+
+
+
+
+
+
 }
