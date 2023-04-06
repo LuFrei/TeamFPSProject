@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+namespace Player{
+
 public enum Stance { 
     Stand, 
     Crouch, 
@@ -8,17 +10,17 @@ public enum Stance {
 /// <summary>
 /// The "Puppet" controls for the character.
 /// </summary>
-public class FPSCharacterController: MonoBehaviour
+public class FirstPersonController: MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private GroundCheck gc;
     [SerializeField] private FPSCamera head;
     [SerializeField] private EquippedItem hand;
 
     //This might be moved out and to be produced by Input Manager and AI Classes
 
-    //stance
+    /// Determines the highest point character can stand.
+    /// Used to calculate crouch & prone hieghts
     private float baseHeight;
     public Stance currentStance;
 
@@ -65,7 +67,8 @@ public class FPSCharacterController: MonoBehaviour
     public void Jump()
     {
         rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-        //for now we will be implementing force, however it's usually unpredictable, so I'd like to have a look into this later
+        // for now we will be implementing force, however it's usually unpredictable, 
+        // so I'd like to have a look into this later
         //->Rigidbody.velocity<-
     }
     public void ToStance(Stance stance){
@@ -97,4 +100,5 @@ public class FPSCharacterController: MonoBehaviour
     public void EquipItem(int inventoryIndex) {
         hand.ChangeHand(inv.Get(inventoryIndex));
     }
+}
 }

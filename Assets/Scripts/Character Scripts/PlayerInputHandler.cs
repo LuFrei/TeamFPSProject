@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+namespace Player{
+
 public class PlayerInputHandler : MonoBehaviour
 {
 
-    [SerializeField]private FPSCharacterController player;
+    [SerializeField]private FirstPersonController player;
     [SerializeField]private GameManager gm;
     [SerializeField] private PlayerInput input;
     private InputManager inputAsset;
@@ -106,4 +108,5 @@ public class PlayerInputHandler : MonoBehaviour
     void OnDisable() {
         inputAsset.Disable();
     }
+}
 }

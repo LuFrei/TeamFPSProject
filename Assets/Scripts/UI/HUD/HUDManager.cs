@@ -5,7 +5,7 @@ using UnityEngine;
 public class HUDManager: MonoBehaviour
 {
     //Dependencies
-    public FPSCharacterController player;
+    public Player.FirstPersonController player;
     public Canvas canvas;
 
     //HUD Elements
