@@ -96,6 +96,9 @@ public class FPSCamera: MonoBehaviour
         lookAngle += kickVector;
     }
 
+    // TODO: interpolate zoom change
+    
+    
     public void Zoom(float multiplier) {
         cam.fieldOfView = baseFieldOfView / multiplier;
     }
