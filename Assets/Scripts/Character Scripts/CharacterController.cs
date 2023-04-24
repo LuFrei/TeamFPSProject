@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace Player{
+namespace Character{
 
 public enum Stance { 
     Stand, 
@@ -10,7 +10,7 @@ public enum Stance {
 /// <summary>
 /// The "Puppet" controls for the character.
 /// </summary>
-public class FirstPersonController: MonoBehaviour
+public class CharacterController: MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] private Rigidbody rb;

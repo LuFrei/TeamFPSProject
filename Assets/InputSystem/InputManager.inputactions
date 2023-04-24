@@ -11,7 +11,8 @@
                     "id": "a6184859-d14d-4ee6-a8ba-01373d2320bb",
                     "expectedControlType": "Vector2",
                     "processors": "NormalizeVector2",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Look",
@@ -19,7 +20,8 @@
                     "id": "e13c8b3a-5f3a-4837-b53a-20b3d96614dc",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Change Stance",
@@ -27,7 +29,8 @@
                     "id": "2987c0f6-fff0-4e75-9e17-a6f3222a77e0",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Crouch",
@@ -35,7 +38,8 @@
                     "id": "5abfcb1b-bb6c-48a5-b79a-80b36f3d6ba0",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Prone",
@@ -43,7 +47,8 @@
                     "id": "da92b252-d766-40be-b350-72cd0b6fde74",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -51,7 +56,8 @@
                     "id": "153995f2-392f-4147-be8a-85a1a635aa50",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Shoot",
@@ -59,7 +65,8 @@
                     "id": "0b4486d7-2b3e-4406-b854-1c81d356041f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Aim",
@@ -67,7 +74,8 @@
                     "id": "9e82b396-7087-49c9-b7c5-6a846a0eb71f",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Interact",
@@ -75,7 +83,8 @@
                     "id": "09a9fbca-cec8-4884-a11e-b56d88a30b6b",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Reload",
@@ -83,7 +92,8 @@
                     "id": "9949efd4-03f2-46ae-a480-7fadaea6034a",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Melee",
@@ -91,7 +101,8 @@
                     "id": "8f6efccf-7204-4b10-a069-4d6e7b35d01e",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Change Mode",
@@ -99,7 +110,8 @@
                     "id": "8e02380e-9d99-4c98-8be6-45cc8b54a723",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Swap To Primary",
@@ -107,7 +119,8 @@
                     "id": "6cea371e-124f-423c-872d-a0fb8fd8ed90",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Swap To Secondary",
@@ -115,7 +128,8 @@
                     "id": "c9ae786b-2f7e-4af5-80cd-8620d1c3c4dd",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Swap To Knife",
@@ -123,7 +137,8 @@
                     "id": "f96a4186-367a-469c-b698-eee25301bb35",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Swap To Grenade",
@@ -131,7 +146,8 @@
                     "id": "ffb5725f-0b9d-4ae2-964c-93317e31caa4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Swap To Utility",
@@ -139,7 +155,8 @@
                     "id": "89857c0d-19cb-497c-8892-f5118fd8294f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Swap To Equipment",
@@ -147,7 +164,8 @@
                     "id": "f23d7dec-e566-4ee5-830d-a210ff655f90",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Toggle Menu",
@@ -155,7 +173,8 @@
                     "id": "5f4096ae-ff53-4099-a503-5a3ec28ca503",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -227,6 +246,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d5f1f171-b37e-471d-ba63-9e3f6bd3f1ba",
+                    "path": "<DualSenseGamepadHID>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS5",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b0776ff4-7402-4fab-8df8-5d1335993085",
                     "path": "<Mouse>/delta",
                     "interactions": "",
@@ -243,6 +273,17 @@
                     "interactions": "",
                     "processors": "NormalizeVector2",
                     "groups": "PS4",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b5a3623b-0f1d-4957-909b-d31c90a681a6",
+                    "path": "<DualSenseGamepadHID>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS5",
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -271,11 +312,33 @@
                 },
                 {
                     "name": "",
+                    "id": "77b0d1df-80e5-4ae6-8e49-298e16f25584",
+                    "path": "<DualSenseGamepadHID>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS5",
+                    "action": "Change Stance",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9b31b92b-b896-44d7-bf77-9bf6d6cea6e9",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "KBM",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9c0f0172-9a32-4bab-beec-6e961d26000f",
+                    "path": "<DualSenseGamepadHID>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS5",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -304,6 +367,17 @@
                 },
                 {
                     "name": "",
+                    "id": "40477877-62c0-430b-aabc-265e96e8209e",
+                    "path": "<DualSenseGamepadHID>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS5",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ffeccf85-27a8-4825-8a39-cf89ffb5387a",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -326,6 +400,17 @@
                 },
                 {
                     "name": "",
+                    "id": "ba07e1b6-f16c-4f31-87bd-9779d00f9fd2",
+                    "path": "<DualSenseGamepadHID>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS5",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "48771399-50a2-40b3-862b-0a971832f192",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
@@ -339,6 +424,17 @@
                     "name": "",
                     "id": "42f115c8-98d7-4aa6-b490-3672de1a76c2",
                     "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9be402f2-ff15-449f-b644-ba6e3e47da4b",
+                    "path": "<DualSenseGamepadHID>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -370,6 +466,17 @@
                 },
                 {
                     "name": "",
+                    "id": "10a6a113-180f-4aee-90dd-4451ea2fd935",
+                    "path": "<DualSenseGamepadHID>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS5",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "cef61bcc-967c-47a1-b63f-ccb4c886668d",
                     "path": "<Keyboard>/v",
                     "interactions": "",
@@ -386,6 +493,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PS4",
+                    "action": "Melee",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "23a3dac2-4c60-45a5-bd36-3bf255978178",
+                    "path": "<DualSenseGamepadHID>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS5",
                     "action": "Melee",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -447,6 +565,17 @@
                 },
                 {
                     "name": "",
+                    "id": "3a37c305-2f9e-4174-bdba-8987b33d72a6",
+                    "path": "<DualSenseGamepadHID>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS5",
+                    "action": "Swap To Primary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7ce5ac2a-1ad8-41f8-a6f4-35e4f4b160d2",
                     "path": "<Keyboard>/v",
                     "interactions": "",
@@ -502,6 +631,17 @@
                 },
                 {
                     "name": "",
+                    "id": "b95681eb-1962-44c5-abfd-3100d0d99ebd",
+                    "path": "<DualSenseGamepadHID>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS5",
+                    "action": "Swap To Secondary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e1d12e14-aea1-4a76-b11b-c1fef855f776",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -521,6 +661,17 @@
                     "action": "Toggle Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02a5a8a6-4cdc-4640-877e-3914866c2135",
+                    "path": "<DualSenseGamepadHID>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS5",
+                    "action": "Toggle Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -534,7 +685,8 @@
                     "id": "0df34673-69ed-4fda-94de-0d733b93e647",
                     "expectedControlType": "Quaternion",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "TrackedDevicePosition",
@@ -542,7 +694,8 @@
                     "id": "1c631c82-1ac1-4c99-8e1c-1d22baddc8e6",
                     "expectedControlType": "Vector3",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "RightClick",
@@ -550,7 +703,8 @@
                     "id": "a6af8dc2-50ef-4a90-969d-e8fa5e08cdbc",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "MiddleClick",
@@ -558,7 +712,8 @@
                     "id": "f8b30398-a4b1-4416-b4f6-e6174718c041",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ScrollWheel",
@@ -566,7 +721,8 @@
                     "id": "1a5fbdfd-8a28-440f-bdea-68f3400da34b",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Click",
@@ -574,7 +730,8 @@
                     "id": "b071b1dd-e58f-4a7c-8bdb-23f09ae22dc1",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Point",
@@ -582,7 +739,8 @@
                     "id": "3eb93497-0fc8-4b75-aa1d-2e412117254e",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Cancel",
@@ -590,7 +748,8 @@
                     "id": "74197a3b-3034-4763-867a-52dac49e8ab8",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Submit",
@@ -598,7 +757,8 @@
                     "id": "730dfa89-6aad-47e2-ac23-dddce36665b1",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Navigate",
@@ -606,7 +766,8 @@
                     "id": "7316e252-d406-4625-a0b8-295672d44cb6",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "ToggleMenu",
@@ -614,7 +775,8 @@
                     "id": "672cc5bb-2439-49ba-a688-af55cf8c3907",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1085,6 +1247,17 @@
                 {
                     "devicePath": "<DualShockGamepad>",
                     "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "PS5",
+            "bindingGroup": "PS5",
+            "devices": [
+                {
+                    "devicePath": "<DualSenseGamepadHID>",
+                    "isOptional": true,
                     "isOR": false
                 }
             ]

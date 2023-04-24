@@ -1,11 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HUDManager: MonoBehaviour
 {
     //Dependencies
-    public Player.FirstPersonController player;
+    public Character.CharacterController player;
     public Canvas canvas;
 
     //HUD Elements

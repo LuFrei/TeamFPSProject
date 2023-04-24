@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player{
+namespace Character{
 
 public class PlayerInputHandler : MonoBehaviour
 {
 
-    [SerializeField]private FirstPersonController player;
-    [SerializeField]private GameManager gm;
+    [SerializeField] private Character.CharacterController player;
+    [SerializeField] private GameManager gm;
     [SerializeField] private PlayerInput input;
     private InputManager inputAsset;
 
