@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon: UsableItem
-{
+namespace TWG.Equipment {
+public class Weapon: UsableItem {
     [Flags] public enum FireMode { Auto = 0, Burst = 1, Single = 2 }
     public FireMode currentMode;
     public int burstSize = 3; //if applicable
 
     [Header("Dependencies")]
-    public FPSCamera FPSCam; //<- This is going to have to be moved. This dependency is quite bad. Perhaps I can use events here.
     public WeaponAttributes attributes;
     private Animator anim;
     [SerializeField] private GameObject bullet;
@@ -42,14 +41,11 @@ public class Weapon: UsableItem
         anim = GetComponent<Animator>();
     }
 
-    private void Start() {
-        FPSCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FPSCamera>();
-    }
-
     private void Update() {
-        if(!isBusy) {
-            FPSCam.ResetView(attributes.RecoilRecovery);
-        }
+            // TODO: Move to camera Script; change check from if notBusy, to if notAtRest
+        //if(!isBusy) {
+        //    FPSCam.ResetView(attributes.RecoilRecovery);
+        //}
         accuracy.RecoverBloom(attributes.BloomRecoveryTime);
     }
 
@@ -82,12 +78,14 @@ public class Weapon: UsableItem
 
     #region Aiming Functions
     void ToAimDownSight(float zoomMultiplier) {
-        FPSCam.Zoom(zoomMultiplier);
+            // TODO: call this inside of Camera Script; tie to ADS event
+        //FPSCam.Zoom(zoomMultiplier);
         accuracy.SetNewBloomSource(attributes.AimAccuracy);
     }
 
     void ToHipfire() {
-        FPSCam.Zoom(1);
+            // TODO: same as above
+        //FPSCam.Zoom(1);
         accuracy.SetNewBloomSource(attributes.HipAccuracy);
     }
     #endregion
@@ -163,4 +161,5 @@ public class Weapon: UsableItem
         }
     }
     #endregion
+}
 }

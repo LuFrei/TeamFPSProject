@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Character;
+using CoreSystems;
 
-namespace Character{
-
-public class PlayerInputHandler : MonoBehaviour
+namespace TWG.Player {
+public class InputHandler : MonoBehaviour
 {
 
     [SerializeField] private Character.CharacterController player;
     [SerializeField] private GameManager gm;
     [SerializeField] private PlayerInput input;
-    private InputManager inputAsset;
+    private PlayerInputManager inputAsset;
 
     public bool isAiming = false;
 
@@ -44,7 +45,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     void OnLook(InputValue value) {
-        player.Head.LookVector = value.Get<Vector2>();
+        player.Head.Look(value.Get<Vector2>());
     }
 
     void OnShoot(InputValue value) {

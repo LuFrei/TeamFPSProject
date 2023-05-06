@@ -1,0 +1,18 @@
+{
+    "name": "Player",
+    "rootNamespace": "TWG.Player",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:f895cd4456cd11745b5dbeb01bdbd431",
+        "GUID:7663dab60aaa666498df35d5b10fc671"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

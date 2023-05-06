@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
+namespace TWG.CoreSystems {
+public class GameManager: MonoBehaviour {
 
-    public enum GameState { Paused, Running}
+    public enum GameState { Paused, Running }
     public GameState currentGameState = GameState.Running;
 
     [SerializeField] private GameObject missionMenu;
@@ -27,4 +27,5 @@ public class GameManager : MonoBehaviour
         missionMenu.SetActive(false);
         return false;
     }
+}
 }

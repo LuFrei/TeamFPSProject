@@ -2,21 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
-{
-
-
-
 /// <summary>
 /// Contains data of where/what the player is looking, as well as several functionalities for shooting weapons.
 /// </summary>
-public class FPSCamera: MonoBehaviour
-{
+namespace TWG.Character {
+public class CameraController: MonoBehaviour {
     //Dependencies
     private Camera cam;
     [SerializeField] private Transform body;
 
-        //This data should be coming from outside, via an input manager
+    //This data should be coming from outside, via an input manager
 
     [Header("Camera Control Settings")]
     [SerializeField] private float sensitivity = 5;
@@ -25,11 +20,11 @@ public class FPSCamera: MonoBehaviour
     [SerializeField] private float baseFieldOfView;
 
 
-        //! things liek kick and camera shake should be effects applied to the camera from the outside.
+    //! things liek kick and camera shake should be effects applied to the camera from the outside.
     private Vector2 lookAngle; //Total angle inclusing things like camera kick
     private Vector2 mouseLookAngle; //records the angle the camera should be exclusively from mouse input
 
-        //!This can an external script
+    //!This can an external script
     //Center-screen ray Data 
     private Ray ray;
     private RaycastHit hit;
@@ -66,12 +61,13 @@ public class FPSCamera: MonoBehaviour
         baseFieldOfView = cam.fieldOfView;
     }
     private void FixedUpdate() {
-        Look(lookAngle);
+        // TODO: Can probably move Turn out of here and into an event.
+        Turn(lookAngle);
         CastRay(out hit);
     }
 
 
-    public void Look(Vector2 angle) {
+    public void Turn(Vector2 angle) {
         transform.localRotation = Quaternion.Euler(-angle.y, 0, 0); //y inverted as it seems that up is -x
         body.localRotation = Quaternion.Euler(0, angle.x, 0);  //un-touched angles are set to current angles to allow for outside forces to effect these things (without snapping abck to 0)
     }
@@ -79,9 +75,9 @@ public class FPSCamera: MonoBehaviour
     private void CastRay(out RaycastHit hit) {
         ray = cam.ViewportPointToRay(centerPoint);
         if(Physics.Raycast(ray, out hit)) {
-             //Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green);
+            //Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green);
         } else {
-            //ebug.DrawRay(ray.origin, ray.direction * 100, Color.red);
+            //Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
         }
     }
 
@@ -98,7 +94,7 @@ public class FPSCamera: MonoBehaviour
         return newDirection;
     }
 
-    public void Kick(float magnitude, float hozOffset) {
+    public void Flinch(float magnitude, float hozOffset) {
         Vector2 kickVector = Vector2.up * magnitude;
         kickVector.x = Random.Range(-hozOffset, hozOffset);
         lookAngle += kickVector;
@@ -108,13 +104,4 @@ public class FPSCamera: MonoBehaviour
         cam.fieldOfView = baseFieldOfView / multiplier;
     }
 }
-
-
-
-
-
-
-
-
-
 }

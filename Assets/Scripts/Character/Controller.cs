@@ -1,7 +1,6 @@
 using UnityEngine;
 
-namespace Character{
-
+namespace TWG.Character{
 public enum Stance { 
     Stand, 
     Crouch, 
@@ -14,7 +13,7 @@ public class CharacterController: MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private FPSCamera head;
+    [SerializeField] private CameraController head;
     [SerializeField] private EquippedItem hand;
 
     //This might be moved out and to be produced by Input Manager and AI Classes
@@ -35,20 +34,20 @@ public class CharacterController: MonoBehaviour
     [SerializeField] private float jumpHeight = 3;
 
     //inventory
-    private PlayerInventory inv;
+    private Inventory inv;
     
 
     
     public EquippedItem Hand => hand;
     public Vector2 MoveVector { set => moveVector = value * Time.deltaTime * (speed); }
-    public FPSCamera Head => head;
+    public CameraController Head => head;
 
     public Stance CurrentStance => currentStance;
 
     private void Awake()
     {
-        inv = GetComponent<PlayerInventory>();
-        head = GetComponentInChildren<FPSCamera>();
+        inv = GetComponent<Inventory>();
+        head = GetComponentInChildren<CameraController>();
         baseHeight = head.transform.localPosition.y;
         EquipItem(0);
     }

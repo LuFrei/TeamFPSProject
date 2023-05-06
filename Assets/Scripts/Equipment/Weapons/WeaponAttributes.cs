@@ -14,9 +14,13 @@ public class WeaponAttributes : ScriptableObject{
     [SerializeField] [Range(1, 500)]private int magSize; 
     [SerializeField] [Range(0, 10)]private int ammoPoolLimit;
 
+    /// <summary>Magnitude of recoil force.</summary>
     [Header("Recoil")]
     [SerializeField][Range(0, 5)]private float recoil;
+    /// <summary> Left-Right deviation during recoil. </summary>
     [SerializeField][Range(0, 5)]private float recoilControl;
+    // TODO: Change this to be character attribute, not weapon.
+    /// <summary> Rate that camera returns to resting position </summary>
     [SerializeField][Range(0.15f, 1)]private float recoilRecovery;
 
     [Header("Accuracy")]

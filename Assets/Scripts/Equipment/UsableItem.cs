@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+namespace TWG.Equipment {
 public class UsableItem: MonoBehaviour {
 
     protected Vector3 rayDir;//This is used to take info from FPSCam and pass it on to individual item for use
@@ -15,4 +15,5 @@ public class UsableItem: MonoBehaviour {
     public virtual void SecondaryActionEnd() { }
     public virtual void Reload() { }
     public virtual void ChangeMode() { }
+}
 }
