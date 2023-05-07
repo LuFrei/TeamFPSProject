@@ -9,7 +9,7 @@ public enum Stance {
 /// <summary>
 /// The "Puppet" controls for the character.
 /// </summary>
-public class CharacterController: MonoBehaviour
+public class Controller: MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] private Rigidbody rb;
@@ -58,18 +58,18 @@ public class CharacterController: MonoBehaviour
 
 
 
-    public void Move(Vector2 direction)
-    {
+    public void Move(Vector2 direction) {
         direction *= speedMultiplier;
         transform.Translate(direction.x, 0, direction.y);
     }
-    public void Jump()
-    {
+
+    public void Jump() {
         rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         // for now we will be implementing force, however it's usually unpredictable, 
         // so I'd like to have a look into this later
         //->Rigidbody.velocity<-
     }
+
     public void ToStance(Stance stance){
         float heightAndSpeedMultiplier = 1f;
         float bloomMultiplier = 1f;
@@ -96,6 +96,7 @@ public class CharacterController: MonoBehaviour
 
         currentStance = stance;
     }
+
     public void EquipItem(int inventoryIndex) {
         hand.ChangeHand(inv.Get(inventoryIndex));
     }

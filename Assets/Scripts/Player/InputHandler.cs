@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Character;
-using CoreSystems;
+using TWG.Character;
+using TWG.CoreSystems;
+// TODO: Look to see if we can obscure this dependency.
+using TWG.Equipment;
 
 namespace TWG.Player {
 public class InputHandler : MonoBehaviour
 {
 
-    [SerializeField] private Character.CharacterController player;
+    [SerializeField] private Character.Controller player;
     [SerializeField] private GameManager gm;
     [SerializeField] private PlayerInput input;
-    private PlayerInputManager inputAsset;
+    //private InputManager inputAsset;
 
     public bool isAiming = false;
 
     private void Awake() {
-        inputAsset = new InputManager();
+        //inputAsset = new InputManager();
         input = GetComponent<PlayerInput>();
     }
 
@@ -45,7 +47,7 @@ public class InputHandler : MonoBehaviour
     }
 
     void OnLook(InputValue value) {
-        player.Head.Look(value.Get<Vector2>());
+        player.Head.Turn(value.Get<Vector2>());
     }
 
     void OnShoot(InputValue value) {
@@ -102,12 +104,12 @@ public class InputHandler : MonoBehaviour
 
 
 
-
-    void OnEnable() {
-        inputAsset.Enable();
-    }
-    void OnDisable() {
-        inputAsset.Disable();
-    }
+        // TODO: Look if this is still needed/why it was used before.
+    //void OnEnable() {
+    //    inputAsset.Enable();
+    //}
+    //void OnDisable() {
+    //    inputAsset.Disable();
+    //}
 }
 }

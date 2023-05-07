@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing.Text;
 using UnityEngine;
+using TWG.Equipment;
 
-public class EquippedItem : MonoBehaviour
-{
+namespace TWG.Character {
+public class EquippedItem: MonoBehaviour {
     /// <summary>
     /// Position the Item should be placed or snapped to.
     /// </summary>
     [SerializeField] private Transform itemHolder;
 
-    [SerializeField] private  itemDataRight;
+    [SerializeField] private UsableItem itemDataRight;
     [SerializeField] private GameObject rightHandItem;
 
     public UsableItem CurrentRightEquipped => itemDataRight;
@@ -31,5 +32,7 @@ public class EquippedItem : MonoBehaviour
         rightHandItem = Instantiate(item, itemHolder);
         itemDataRight = rightHandItem.GetComponent<UsableItem>();
     }
+
+
 }
- 
+}

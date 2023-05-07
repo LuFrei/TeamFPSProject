@@ -85,15 +85,6 @@ public class CameraController: MonoBehaviour {
         lookAngle.y = Mathf.MoveTowards(lookAngle.y, mouseLookAngle.y, rate);
     }
 
-    public Quaternion GenerateRandomDeviation(float maxMagnitude) {
-        Quaternion newDirection = Quaternion.LookRotation(ray.direction);
-        float angle = Random.Range(0, 360);
-        float magnitude = Random.Range(0, maxMagnitude);
-        newDirection *= Quaternion.AngleAxis(angle, Vector3.forward);
-        newDirection *= Quaternion.AngleAxis(magnitude, Vector3.right);
-        return newDirection;
-    }
-
     public void Flinch(float magnitude, float hozOffset) {
         Vector2 kickVector = Vector2.up * magnitude;
         kickVector.x = Random.Range(-hozOffset, hozOffset);

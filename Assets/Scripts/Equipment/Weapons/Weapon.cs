@@ -13,7 +13,9 @@ public class Weapon: UsableItem {
     public WeaponAttributes attributes;
     private Animator anim;
     [SerializeField] private GameObject bullet;
-    
+
+    //vital
+    public Ray bulletOrigin; // This needs to be fed in
 
     //Components that make up a "Weapon"
     private AccuracySpread accuracy = new AccuracySpread();
@@ -23,7 +25,6 @@ public class Weapon: UsableItem {
     private bool isLoaded = true; //Ready to shoot the next bullet
     private bool isReceivingInput; //Am I recieving input?
     private bool isBusy = false; //Am I ready for the next input?
-
 
     //Aiming
     private float aimingSpeed;
@@ -50,15 +51,19 @@ public class Weapon: UsableItem {
     }
 
 
-
     private void Shoot(float kickMagnitude) {
         anim.SetTrigger("shot");
-        Instantiate(bullet, FPSCam.Ray.origin, FPSCam.GenerateRandomDeviation(accuracy.Bloom));
-        FPSCam.Kick(kickMagnitude, attributes.RecoilControl);
-        accuracy.AddBloom(attributes.Stability);
+            // TODO: inject data like Bulletorigin from camera.
+            // TODO: Make GenerateRandomDeviation a weapon method.
+            //Instantiate(bullet, FPSCam.Ray.origin, FPSCam.GenerateRandomDeviation(accuracy.Bloom));
+            Instantiate(bullet, bulletOrigin.origin, GenerateRandomDeviation(accuracy.Bloom));
+            // TODO: Call this in the CharacterController.
+            // FPSCam.Kick(kickMagnitude, attributes.RecoilControl);
+            accuracy.AddBloom(attributes.Stability);
         isLoaded = false;
         StartCoroutine(CycleShot());
     } 
+
     private IEnumerator CycleShot() {
         float loadBuffer = 0;
         if(ammunition.ExpendBullet()) {
@@ -74,10 +79,17 @@ public class Weapon: UsableItem {
         }
     }
 
+    public Quaternion GenerateRandomDeviation(float maxMagnitude) {
+        Quaternion newDirection = Quaternion.LookRotation(bulletOrigin.direction);
+        float angle = UnityEngine.Random.Range(0, 360);
+        float magnitude = UnityEngine.Random.Range(0, maxMagnitude);
+        newDirection *= Quaternion.AngleAxis(angle, Vector3.forward);
+        newDirection *= Quaternion.AngleAxis(magnitude, Vector3.right);
+        return newDirection;
+    }
 
-
-    #region Aiming Functions
-    void ToAimDownSight(float zoomMultiplier) {
+        #region Aiming Functions
+        void ToAimDownSight(float zoomMultiplier) {
             // TODO: call this inside of Camera Script; tie to ADS event
         //FPSCam.Zoom(zoomMultiplier);
         accuracy.SetNewBloomSource(attributes.AimAccuracy);

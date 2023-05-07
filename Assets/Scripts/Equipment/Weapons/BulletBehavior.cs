@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBehavior: MonoBehaviour
-{
+namespace TWG.Equipment {
+public class BulletBehavior: MonoBehaviour {
     private LineRenderer line;
     private Vector3[] lineVertices = new Vector3[2];
 
     private Ray ray;
     private RaycastHit hit;
 
-    [SerializeField]private float lifeTime = 0.05f;
-    [SerializeField]private float decayState = 100; //determines when a bullet should be destroyed (time/hit based)
-    [SerializeField]private float magnitude = 100;
+    [SerializeField] private float lifeTime = 0.05f;
+    [SerializeField] private float decayState = 100; //determines when a bullet should be destroyed (time/hit based)
+    [SerializeField] private float magnitude = 100;
 
-    [SerializeField]private GameObject[] bulletHoleTexture;
+    [SerializeField] private GameObject[] bulletHoleTexture;
 
 
     public float Magnitude { set => magnitude = value; }
-    public RaycastHit Hit => hit; 
+    public RaycastHit Hit => hit;
 
 
 
 
-    void Awake(){
+    void Awake() {
         //Set variables 
         line = GetComponent<LineRenderer>();
         ray = new Ray(transform.position, transform.forward);
@@ -35,14 +35,16 @@ public class BulletBehavior: MonoBehaviour
         StartCoroutine(Timer(decayState, 2000));
     }
 
-    
 
+
+    // TODO: Insead of ray collision should trigger event where character can reduce health.
     private void ShootRay() {
 
         if(Physics.Raycast(ray, out hit, magnitude)) {
-            if(hit.collider.GetComponent<Health>()) {
-                DealDamage(hit);
-            }
+                // Commenting for now, but his does nothing yet anyway.
+            //if(hit.collider.GetComponent<Health>()) {
+            //    DealDamage(hit);
+            //}
             ApplyHitTexture(hit);
             Decay(100);
         }
@@ -72,4 +74,5 @@ public class BulletBehavior: MonoBehaviour
         }
         Destroy(gameObject);
     }
+}
 }

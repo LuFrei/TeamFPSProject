@@ -1,11 +1,8 @@
 {
-    "name": "Player",
-    "rootNamespace": "TWG.Player",
+    "name": "Debug",
+    "rootNamespace": "TWG.HUD.Debugger",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:f895cd4456cd11745b5dbeb01bdbd431",
-        "GUID:7663dab60aaa666498df35d5b10fc671",
-        "GUID:21e514297d0b7544a9ecf2ee220e6052"
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
