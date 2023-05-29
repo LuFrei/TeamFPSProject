@@ -51,12 +51,11 @@ public class Controller: MonoBehaviour
         baseHeight = head.transform.localPosition.y;
         EquipItem(0);
     }
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         Move(moveVector);
     }
 
-
+    // Movement
 
     public void Move(Vector2 direction) {
         direction *= speedMultiplier;

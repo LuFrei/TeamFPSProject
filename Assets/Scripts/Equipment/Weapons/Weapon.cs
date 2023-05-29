@@ -27,8 +27,6 @@ public class Weapon: UsableItem {
     private bool isBusy = false; //Am I ready for the next input?
 
     //Aiming
-    private float aimingSpeed;
-    private float walkingSpeed;
     private float aimZoom = 1.2f;
 
     public override AccuracySpread Accuracy => accuracy;
@@ -43,7 +41,7 @@ public class Weapon: UsableItem {
     }
 
     private void Update() {
-            // TODO: Move to camera Script; change check from if notBusy, to if notAtRest
+        // TODO: Move to camera Script; change check from if notBusy, to if notAtRest
         //if(!isBusy) {
         //    FPSCam.ResetView(attributes.RecoilRecovery);
         //}
@@ -88,7 +86,7 @@ public class Weapon: UsableItem {
         return newDirection;
     }
 
-        #region Aiming Functions
+    #region Aiming Functions
         void ToAimDownSight(float zoomMultiplier) {
             // TODO: call this inside of Camera Script; tie to ADS event
         //FPSCam.Zoom(zoomMultiplier);

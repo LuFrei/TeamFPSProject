@@ -8,8 +8,7 @@ using TWG.CoreSystems;
 using TWG.Equipment;
 
 namespace TWG.Player {
-public class InputHandler : MonoBehaviour
-{
+public class InputHandler: MonoBehaviour {
 
     [SerializeField] private Character.Controller player;
     [SerializeField] private GameManager gm;
@@ -43,7 +42,7 @@ public class InputHandler : MonoBehaviour
     }
 
     void OnMove(InputValue value) {
-        player.MoveVector = value.Get<Vector2>(); 
+        player.MoveVector = value.Get<Vector2>();
     }
 
     void OnLook(InputValue value) {
@@ -70,7 +69,7 @@ public class InputHandler : MonoBehaviour
 
     void OnProne(InputValue value) {
         //"Toggle" logic
-        if(value.isPressed && player.currentStance == Stance.Prone) { 
+        if(value.isPressed && player.currentStance == Stance.Prone) {
             player.ToStance(Stance.Stand);
         } else if(value.isPressed) {
             player.ToStance(Stance.Prone);
@@ -104,7 +103,7 @@ public class InputHandler : MonoBehaviour
 
 
 
-        // TODO: Look if this is still needed/why it was used before.
+    // TODO: Look if this is still needed/why it was used before.
     //void OnEnable() {
     //    inputAsset.Enable();
     //}

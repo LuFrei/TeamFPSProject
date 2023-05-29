@@ -15,13 +15,13 @@ public class CameraController: MonoBehaviour {
 
     [Header("Camera Control Settings")]
     [SerializeField] private float sensitivity = 5;
-    [SerializeField] private float maxLookAngle = 90;
-    [SerializeField] private float minLookAngle = -90;
+    [SerializeField] private float maxVerticalAngle = 90;
+    [SerializeField] private float minVerticalAngle = -90;
     [SerializeField] private float baseFieldOfView;
 
 
     //! things liek kick and camera shake should be effects applied to the camera from the outside.
-    private Vector2 lookAngle; //Total angle inclusing things like camera kick
+    private Vector2 lookAngle; //Total angle including things like camera kick
     private Vector2 mouseLookAngle; //records the angle the camera should be exclusively from mouse input
 
     //!This can an external script
@@ -40,11 +40,11 @@ public class CameraController: MonoBehaviour {
             mouseLookAngle += vector;
             lookAngle += vector;
 
-            mouseLookAngle.y = Mathf.Clamp(mouseLookAngle.y, minLookAngle, maxLookAngle);
-            lookAngle.y = Mathf.Clamp(lookAngle.y, minLookAngle, maxLookAngle);
-
+            mouseLookAngle.y = Mathf.Clamp(mouseLookAngle.y, minVerticalAngle, maxVerticalAngle);
+            lookAngle.y = Mathf.Clamp(lookAngle.y, minVerticalAngle, maxVerticalAngle);
         }
     }
+
     public Vector2 LookOffsetVector {
         set {
             lookAngle += value;
@@ -68,8 +68,10 @@ public class CameraController: MonoBehaviour {
 
 
     public void Turn(Vector2 angle) {
-        transform.localRotation = Quaternion.Euler(-angle.y, 0, 0); //y inverted as it seems that up is -x
-        body.localRotation = Quaternion.Euler(0, angle.x, 0);  //un-touched angles are set to current angles to allow for outside forces to effect these things (without snapping abck to 0)
+        //y inverted as it seems that up is -x
+        transform.localRotation = Quaternion.Euler(-angle.y, 0, 0);
+        //un-touched angles are set to current angles to allow for outside forces to effect these things (without snapping abck to 0)
+        body.localRotation = Quaternion.Euler(0, angle.x, 0);  
     }
 
     private void CastRay(out RaycastHit hit) {
